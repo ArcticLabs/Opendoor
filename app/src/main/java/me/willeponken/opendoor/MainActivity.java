@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.RECEIVE_SMS)) {
                 // TODO(edvinnn): Show permission rationale.
-
                 //requestPermissions(); // Retry request
             } else {
                 ActivityCompat.requestPermissions(this,
