@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
-public class SmsListener extends BroadcastReceiver {
+public class SmsReceiver extends BroadcastReceiver {
+    private static final String TAG = SmsReceiver.class.getSimpleName();
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -15,8 +17,7 @@ public class SmsListener extends BroadcastReceiver {
                 String messageBody = smsMessage.getMessageBody();
                 String messageUser = smsMessage.getOriginatingAddress();
 
-                System.out.println(messageUser);
-                System.out.println(messageBody);
+                Log.d(TAG, "SMS received from: " + messageUser + ", with body: " + messageBody);
             }
         }
     }
