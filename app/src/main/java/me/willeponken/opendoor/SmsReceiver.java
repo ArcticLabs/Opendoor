@@ -18,6 +18,7 @@ public class SmsReceiver extends BroadcastReceiver {
                 String messageUser = smsMessage.getOriginatingAddress();
 
                 Log.d(TAG, "SMS received from: " + messageUser + ", with body: " + messageBody);
+                DoorPhone.dial(context, "+46920420062");
             }
         }
     }
