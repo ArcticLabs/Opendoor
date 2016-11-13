@@ -1,6 +1,9 @@
 package me.willeponken.opendoor;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +17,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = DoorPhone.class.getSimpleName();
 
@@ -22,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_READ_PHONE_STATE = 2;
     private static final int PERMISSION_CALL_PHONE = 3;
 
+    SharedPreferences userDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +36,24 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        userDatabase = this.getPreferences(this.MODE_PRIVATE);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent addUserActivity = new Intent(MainActivity.this, NewUserActivity.class);
+                MainActivity.this.startActivity(addUserActivity);
             }
         });
+
+        requestPermissions();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String[] newUserArray = extras.getStringArray("newUserData");
+            addUser(newUserArray);
+        }
 
 
         requestPermission(new String[]{
@@ -73,7 +90,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void callNumber() {
+    private void addUser(String[] user){
+        SharedPreferences.Editor editor = userDatabase.edit();
+        editor.putString(user[0], user[0] + "," + user[1] + "," + user[2]);
+        editor.commit();
+    }
+
+    private void requestPermissions() {
 
     }
 

@@ -15,11 +15,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/editText" />
+        android:id="@+id/editText"
+        android:hint="Name" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -30,18 +30,18 @@
         android:layout_alignRight="@+id/editText"
         android:layout_alignEnd="@+id/editText"
         android:id="@+id/editText2"
-        android:text="Phone" />
+        android:hint="Phone" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Password"
         android:ems="10"
         android:layout_below="@+id/editText2"
         android:layout_alignRight="@+id/editText2"
         android:layout_alignEnd="@+id/editText2"
-        android:id="@+id/editText3" />
+        android:id="@+id/editText3"
+        android:hint="Password" />
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
@@ -52,5 +52,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/floatingActionButton" />
+        android:id="@+id/fabSave" />
 </RelativeLayout>
