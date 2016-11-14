@@ -1,23 +1,19 @@
 package me.willeponken.opendoor;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import java.io.File;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = DoorPhone.class.getSimpleName();
@@ -47,14 +43,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        requestPermissions();
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String[] newUserArray = extras.getStringArray("newUserData");
             addUser(newUserArray);
         }
-
 
         requestPermission(new String[]{
                 // Check for RECEIVE_SMS permission. This permission is needed for retreiving the latest
@@ -94,10 +87,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = userDatabase.edit();
         editor.putString(user[0], user[0] + "," + user[1] + "," + user[2]);
         editor.commit();
-    }
-
-    private void requestPermissions() {
-
     }
 
     private void requestPermission(String[] permissions, int code) {

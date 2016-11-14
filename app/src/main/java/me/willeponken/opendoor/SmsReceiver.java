@@ -15,10 +15,14 @@ public class SmsReceiver extends BroadcastReceiver {
         if (Telephony.Sms.Intents.SMS_RECEIVED_ACTION.equals(intent.getAction())) {
             for (SmsMessage smsMessage : Telephony.Sms.Intents.getMessagesFromIntent(intent)) {
                 String messageBody = smsMessage.getMessageBody();
-                String messageUser = smsMessage.getOriginatingAddress();
+                String messageNumber = smsMessage.getOriginatingAddress();
 
-                Log.d(TAG, "SMS received from: " + messageUser + ", with body: " + messageBody);
-                DoorPhone.dial(context, "+46920420062");
+                Log.d(TAG, "SMS received from: " + messageNumber + ", with body: " + messageBody);
+
+                Database.User user = Database.GetUserFromNumber(context, messageNumber);
+                if (user != null && user.password.equals(messageBody)) {
+                    DoorPhone.dial(context, Database.GetDialNumber(context));
+                }
             }
         }
     }
