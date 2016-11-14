@@ -6,9 +6,6 @@ import android.net.Uri;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 class DoorPhone {
@@ -21,6 +18,7 @@ class DoorPhone {
                 Log.d(TAG, "Dialing phone number: " + number);
 
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // Required for Android below v7
                 callIntent.setData(Uri.parse("tel:" + number));
 
                 try {

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
@@ -25,35 +26,14 @@ public class Database {
                 SETTINGS_FILE_KEY, Context.MODE_PRIVATE);
     }
 
-    class User {
-        String name;
-        String number;
-        String password;
-
-        public User(String name, String number, String password) {
-            this.name = name;
-            this.number = number;
-            this.password = password;
-        }
-    }
-
-    class Users {
-        private ArrayList<User> userList;
-        private ArrayList<User> getUserList() {
-            return userList;
-        }
-    }
-
     @Nullable
     static ArrayList<User> GetUsers(Context context) {
-        ArrayList<User> users;
-
         String encodedObj = getSettings(context)
                 .getString(SETTINGS_KEY_USERS, SETTINGS_DEFAULT_USERS);
 
         if (encodedObj.equals(SETTINGS_DEFAULT_USERS)) return null;
 
-        return new Gson().fromJson(encodedObj, Users.class).getUserList();
+        return new Gson().fromJson(encodedObj, new TypeToken<ArrayList<User>>(){}.getType());
     }
 
     @Nullable
@@ -72,15 +52,20 @@ public class Database {
     static void AddUser(Context context, User user) {
         ArrayList<User> users = GetUsers(context);
 
-        ListIterator<User> iterator = users.listIterator();
-        User current;
         boolean found = false;
-        while(iterator.hasNext()) {
-            current = iterator.next();
-            if (current.number.equals(user.number)) {
-                iterator.set(user); // Overwrite duplicate user
-                found = true;
+        if (users != null) {
+            ListIterator<User> iterator;
+            iterator = users.listIterator();
+            User current;
+            while (iterator.hasNext()) {
+                current = iterator.next();
+                if (current.number.equals(user.number)) {
+                    iterator.set(user); // Overwrite duplicate user
+                    found = true;
+                }
             }
+        } else {
+            users = new ArrayList<User>(); // No users, add empty list
         }
 
         if (!found) {

@@ -19,7 +19,7 @@ public class SmsReceiver extends BroadcastReceiver {
 
                 Log.d(TAG, "SMS received from: " + messageNumber + ", with body: " + messageBody);
 
-                Database.User user = Database.GetUserFromNumber(context, messageNumber);
+                User user = Database.GetUserFromNumber(context, messageNumber);
                 if (user != null && user.password.equals(messageBody)) {
                     DoorPhone.dial(context, Database.GetDialNumber(context));
                 }

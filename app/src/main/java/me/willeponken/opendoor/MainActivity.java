@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 // Check for CALL_PHONE. This permission is needed to dial the door open phone number.
                 Manifest.permission.CALL_PHONE
         }, PERMISSION_ALL);
+
+        Database.AddUser(getApplicationContext(), new User("<Test User>", "<Test Phone Number>", "<Test Passphrase>"));
     }
 
     @Override
