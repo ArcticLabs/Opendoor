@@ -39,4 +39,8 @@ class User {
         this.caseSensitive = !this.caseSensitive;
         return this.caseSensitive;
     }
+
+    public String toString() {
+        return String.format("%s: %s", name, password);
+    }
 }
