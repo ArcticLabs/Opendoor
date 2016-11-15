@@ -29,6 +29,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = DoorPhone.class.getSimpleName();
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_CALL_PHONE = 3;
 
     SharedPreferences userDatabase;
+    ListView userListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +63,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String[] newUserArray = extras.getStringArray("newUserData");
-            //addUser(newUserArray);
-            // TODO(edvinnn): Insert Database.addUser here.
-        }
-
         requestPermission(new String[]{
                 // Check for RECEIVE_SMS permission. This permission is needed for retrieving the latest
                 // SMS and reading it checking for a passphrase to call the open telephone number.
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.CALL_PHONE
         }, PERMISSION_ALL);
 
-        Database.addUser(getApplicationContext(), new User("<Test User>", "<Test Phone Number>", "<Test Passphrase>", true, false));
+        createUserListView();
     }
 
     @Override
@@ -99,6 +97,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void createUserListView() {
+        userListView = (ListView)findViewById(R.id.list);
+        ArrayList<User> users = Database.getUsers(getApplicationContext());
+
+        if (users != null) {
+            ArrayAdapter<User> usersAdapter = new ArrayAdapter<User>(
+                    this,
+                    android.R.layout.simple_list_item_1,
+                    users
+            );
+
+            userListView.setAdapter(usersAdapter);
+        }
     }
 
     private void requestPermission(String[] permissions, int code) {

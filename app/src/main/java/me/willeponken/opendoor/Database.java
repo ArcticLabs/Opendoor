@@ -30,7 +30,7 @@ class Database {
     private static final String SETTINGS_FILE_KEY = "settings";
 
     private static final String SETTINGS_KEY_DIAL_NUMBER = "settings_dial_number";
-    private static final String SETTINGS_DEFAULT_DIAL_NUMBER = "+46920420062"; //TODO(willeponken): Change this to something sane
+    private static final String SETTINGS_DEFAULT_DIAL_NUMBER = "+46920420044"; //TODO(willeponken): Change this to something sane
 
     private static final String SETTINGS_KEY_USERS = "settings_users";
     private static final String SETTINGS_DEFAULT_USERS = "";
