@@ -46,11 +46,12 @@ public class MainActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String[] newUserArray = extras.getStringArray("newUserData");
-            addUser(newUserArray);
+            //addUser(newUserArray);
+            // TODO(edvinnn): Insert Database.addUser here.
         }
 
         requestPermission(new String[]{
-                // Check for RECEIVE_SMS permission. This permission is needed for retreiving the latest
+                // Check for RECEIVE_SMS permission. This permission is needed for retrieving the latest
                 // SMS and reading it checking for a passphrase to call the open telephone number.
                 Manifest.permission.RECEIVE_SMS,
                 // Check for READ_PHONE_STATE permission. This permission is needed to end the phone call
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.CALL_PHONE
         }, PERMISSION_ALL);
 
-        Database.AddUser(getApplicationContext(), new User("<Test User>", "<Test Phone Number>", "<Test Passphrase>"));
+        Database.addUser(getApplicationContext(), new User("<Test User>", "<Test Phone Number>", "<Test Passphrase>", true, false));
     }
 
     @Override
@@ -83,12 +84,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void addUser(String[] user){
-        SharedPreferences.Editor editor = userDatabase.edit();
-        editor.putString(user[0], user[0] + "," + user[1] + "," + user[2]);
-        editor.commit();
     }
 
     private void requestPermission(String[] permissions, int code) {

@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-public class Database {
+class Database {
 
     private static final String SETTINGS_FILE_KEY = "settings";
 
@@ -27,7 +27,7 @@ public class Database {
     }
 
     @Nullable
-    static ArrayList<User> GetUsers(Context context) {
+    static ArrayList<User> getUsers(Context context) {
         String encodedObj = getSettings(context)
                 .getString(SETTINGS_KEY_USERS, SETTINGS_DEFAULT_USERS);
 
@@ -37,20 +37,22 @@ public class Database {
     }
 
     @Nullable
-    static User GetUserFromNumber(Context context, String number) {
-        ArrayList<User> users = GetUsers(context);
+    static User getUserFromNumber(Context context, String number) {
+        ArrayList<User> users = getUsers(context);
 
-        for (User user: users) {
-            if (user.number.equals(number)) {
-                return user;
+        if (users != null) {
+            for (User user : users) {
+                if (user.number.equals(number)) {
+                    return user;
+                }
             }
         }
 
         return null;
     }
 
-    static void AddUser(Context context, User user) {
-        ArrayList<User> users = GetUsers(context);
+    static void addUser(Context context, User user) {
+        ArrayList<User> users = getUsers(context);
 
         boolean found = false;
         if (users != null) {
@@ -77,12 +79,12 @@ public class Database {
         e.apply();
     }
 
-    static String GetDialNumber(Context context) {
+    static String getDialNumber(Context context) {
         return getSettings(context)
                 .getString(SETTINGS_KEY_DIAL_NUMBER, SETTINGS_DEFAULT_DIAL_NUMBER);
     }
 
-    static void SetDialNumber(Context context, String number) {
+    static void setDialNumber(Context context, String number) {
         SharedPreferences.Editor e = getSettings(context).edit();
         e.putString(SETTINGS_KEY_DIAL_NUMBER, number);
         e.apply();
