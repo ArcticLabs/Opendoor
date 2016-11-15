@@ -29,16 +29,28 @@ public class SmsReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (Telephony.Sms.Intents.SMS_RECEIVED_ACTION.equals(intent.getAction())) {
             for (SmsMessage smsMessage : Telephony.Sms.Intents.getMessagesFromIntent(intent)) {
-                String messageBody = smsMessage.getMessageBody();
-                String messageNumber = smsMessage.getOriginatingAddress();
+                String body = smsMessage.getMessageBody();
+                String number = smsMessage.getOriginatingAddress();
 
-                Log.d(TAG, "SMS received from: " + messageNumber + ", with body: " + messageBody);
+                Log.d(TAG, "SMS received from: " + number + ", with body: " + body);
 
-                User user = Database.getUserFromNumber(context, messageNumber);
-                if (user != null && user.password.equals(messageBody)) {
+                if (validUserCredentials(context, number, body)) {
                     DoorPhone.dial(context, Database.getDialNumber(context));
                 }
             }
         }
+    }
+
+    private boolean validUserCredentials(Context context, String number, String body) {
+        User user = Database.getUserFromNumber(context, number);
+
+        if (user != null && user.active) {
+            if ((user.caseSensitive && user.password.equalsIgnoreCase(body))
+                    || user.password.equals(body)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
