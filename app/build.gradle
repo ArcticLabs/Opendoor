@@ -18,12 +18,21 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
+    def getGitHash = { ->
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-parse', '--short', 'HEAD'
+            standardOutput = stdout
+        }
+        return stdout.toString().trim()
+    }
     defaultConfig {
         applicationId "me.willeponken.opendoor"
         minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
-        versionName "0.0.1-alpha"
+        versionName "0.0.1-${getGitHash()}"
+        buildConfigField "String", "GitHash", "\"${getGitHash()}\""
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
