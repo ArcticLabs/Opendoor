@@ -30,11 +30,13 @@ class Database {
     private static final String SETTINGS_FILE_KEY = "settings";
 
     private static final String SETTINGS_KEY_DIAL_NUMBER = "settings_dial_number";
-    private static final String SETTINGS_DEFAULT_DIAL_NUMBER = "+46920420044"; //TODO(willeponken): Change this to something sane
+    private static final String SETTINGS_DEFAULT_DIAL_NUMBER = "";
 
     private static final String SETTINGS_KEY_USERS = "settings_users";
     private static final String SETTINGS_DEFAULT_USERS = "";
 
+    private static final String SETTINGS_KEY_FIRST_TIME_RUNNING = "settings_first_time_running";
+    private static final boolean SETTINGS_DEFAULT_FIRST_TIME_RUNNING = true;
 
     private static SharedPreferences getSettings(Context context) {
         return context.getSharedPreferences(
@@ -66,32 +68,56 @@ class Database {
         return null;
     }
 
-    static void addUser(Context context, User user) {
+    @Nullable
+    private static ListIterator<User> getUserPosition(Context context, User user) {
         ArrayList<User> users = getUsers(context);
 
-        boolean found = false;
         if (users != null) {
             ListIterator<User> iterator;
             iterator = users.listIterator();
-            User current;
             while (iterator.hasNext()) {
-                current = iterator.next();
-                if (current.number.equals(user.number)) {
-                    iterator.set(user); // Overwrite duplicate user
-                    found = true;
+                if (iterator.next().number.equals(user.number)) {
+                    return iterator;
                 }
             }
-        } else {
-            users = new ArrayList<User>(); // No users, add empty list
         }
 
-        if (!found) {
+        return null;
+    }
+
+    static void addUser(Context context, User user) {
+        ArrayList<User> users = getUsers(context);
+
+        if (users != null) {
+            ListIterator<User> iterator = getUserPosition(context, user);
+            if (iterator != null) {
+                iterator.set(user); // Overwrite duplicate user
+            } else {
+                users.add(user); // No such user, add new
+            }
+        } else {
+            users = new ArrayList<>(); // No users, add empty list
             users.add(user);
         }
 
-        SharedPreferences.Editor e = getSettings(context).edit();
-        e.putString(SETTINGS_KEY_USERS, new Gson().toJson(users));
-        e.apply();
+        getSettings(context).edit()
+                .putString(SETTINGS_KEY_USERS, new Gson().toJson(users))
+                .apply();
+    }
+
+    static void replaceUser(Context context, User oldUser, User newUser) {
+        ArrayList<User> users = getUsers(context);
+
+        if (users != null) {
+            ListIterator<User> iterator = getUserPosition(context, oldUser);
+            if (iterator != null) {
+                iterator.set(newUser);
+
+                getSettings(context).edit()
+                        .putString(SETTINGS_KEY_USERS, new Gson().toJson(users))
+                        .apply();
+            }
+        }
     }
 
     static String getDialNumber(Context context) {
@@ -100,8 +126,19 @@ class Database {
     }
 
     static void setDialNumber(Context context, String number) {
-        SharedPreferences.Editor e = getSettings(context).edit();
-        e.putString(SETTINGS_KEY_DIAL_NUMBER, number);
-        e.apply();
+        getSettings(context).edit()
+                .putString(SETTINGS_KEY_DIAL_NUMBER, number)
+                .apply();
+    }
+
+    static boolean firstTimeRunning(Context context) {
+        return getSettings(context)
+                .getBoolean(SETTINGS_KEY_FIRST_TIME_RUNNING, SETTINGS_DEFAULT_FIRST_TIME_RUNNING);
+    }
+
+    static void hasRunFirstTime(Context context) {
+        getSettings(context).edit()
+                .putBoolean(SETTINGS_KEY_FIRST_TIME_RUNNING, false)
+                .apply();
     }
 }
