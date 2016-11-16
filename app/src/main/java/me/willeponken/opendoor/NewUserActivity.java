@@ -15,22 +15,36 @@
 
 package me.willeponken.opendoor;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Contacts;
+import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.QuickContactBadge;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NewUserActivity extends AppCompatActivity {
+
+    static public final int CONTACT = 0;
 
     EditText name_input;
     EditText phone_input;
     EditText password_input;
 
     FloatingActionButton fab;
+    Button contactBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +56,8 @@ public class NewUserActivity extends AppCompatActivity {
         password_input    = (EditText)findViewById(R.id.editText3);
 
         fab = (FloatingActionButton) findViewById(R.id.fabSave);
+        contactBtn = (Button)findViewById(R.id.contactButton);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +72,7 @@ public class NewUserActivity extends AppCompatActivity {
                     // Show toast
                     Toast toast = Toast.makeText(context, errorMsg, duration);
                     toast.show();
+
                 } else {
 
                     String name        = name_input.getText().toString();
@@ -72,5 +89,45 @@ public class NewUserActivity extends AppCompatActivity {
             }
         });
 
+        contactBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        ContactsContract.Contacts.CONTENT_URI);
+                startActivityForResult(intent, CONTACT);
+            }
+        });
+
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case (CONTACT):
+                if (resultCode == Activity.RESULT_OK) {
+                    String contactName = "";
+                    String phoneNumber = "";
+                    String contactId = null;
+
+                    Cursor contactCursor = getContentResolver().query(data.getData(), null,null,null,null);
+                    if(contactCursor != null && contactCursor.moveToFirst()) {
+                        contactName = contactCursor.getString(contactCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                        contactId = contactCursor.getString(contactCursor.getColumnIndex(ContactsContract.Contacts._ID));
+                    }
+                    contactCursor.close();
+
+                    if (contactId != null) {
+                        Cursor phoneCursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+                                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{ contactId }, null);
+                        if (phoneCursor != null && phoneCursor.moveToNext()) {
+                            phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER));
+                        }
+                        phoneCursor.close();
+                    }
+                    name_input.setText(contactName);
+                    phone_input.setText(phoneNumber);
+                }
+        }
     }
 }

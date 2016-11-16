@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
                 // to the door open phone number.
                 Manifest.permission.READ_PHONE_STATE,
                 // Check for CALL_PHONE. This permission is needed to dial the door open phone number.
-                Manifest.permission.CALL_PHONE
+                Manifest.permission.CALL_PHONE,
+                // Check for READ_CONTACTS. This permission is required for adding a contact using contact view.
+                Manifest.permission.READ_CONTACTS
         }, PERMISSION_ALL);
 
         createUserListView();
@@ -93,9 +95,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+            startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
