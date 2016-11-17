@@ -27,6 +27,8 @@ import java.util.ListIterator;
 
 class Database {
 
+    private static final String TAG = Database.class.getSimpleName();
+
     private static final String SETTINGS_FILE_KEY = "settings";
 
     private static final String SETTINGS_KEY_DIAL_NUMBER = "settings_dial_number";
@@ -91,7 +93,7 @@ class Database {
         if (users != null) {
             ListIterator<User> iterator = getUserPosition(context, user);
             if (iterator != null) {
-                iterator.set(user); // Overwrite duplicate user
+                users.set(iterator.nextIndex()-1, user);
             } else {
                 users.add(user); // No such user, add new
             }
@@ -111,7 +113,7 @@ class Database {
         if (users != null) {
             ListIterator<User> iterator = getUserPosition(context, oldUser);
             if (iterator != null) {
-                iterator.set(newUser);
+                users.set(iterator.nextIndex()-1, newUser);
 
                 getSettings(context).edit()
                         .putString(SETTINGS_KEY_USERS, new Gson().toJson(users))
