@@ -32,6 +32,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.sql.DataTruncation;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         userDatabase = this.getPreferences(this.MODE_PRIVATE);
+
+        if (Database.firstTimeRunning(getApplicationContext())) {
+            Database.hasRunFirstTime(getApplicationContext());
+            Intent firstTime = new Intent(getApplicationContext(), InitialActivity.class);
+            MainActivity.this.startActivity(firstTime);
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

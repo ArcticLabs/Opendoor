@@ -42,7 +42,7 @@
         <activity
             android:name=".NewUserActivity"
             android:label="Add new user"
-            android:parentActivityName="me.willeponken.opendoor.MainActivity"/>
+            android:parentActivityName=".MainActivity" />
 
         <receiver
             android:name=".SmsReceiver"
@@ -57,8 +57,11 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName="me.willeponken.opendoor.MainActivity"/>
-        
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".InitialActivity"
+            android:label="@string/title_activity_initial"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
