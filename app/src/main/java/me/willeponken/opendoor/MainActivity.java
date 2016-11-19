@@ -32,7 +32,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.sql.DataTruncation;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -150,21 +149,21 @@ public class MainActivity extends AppCompatActivity {
             case PERMISSION_RECEIVE_SMS: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    // TODO(edvinnn) Tell the user to fuck off, i.e. show dialog that requires the user to call requestPermissions() again.
+                    // TODO(edvinnn) Show dialog that requires the user to call requestPermissions() again.
                 }
             }
 
             case PERMISSION_READ_PHONE_STATE: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    // TODO(edvinnn) Tell the user to fuck off, i.e. show dialog that requires the user to call requestPermissions() again.
+                    // TODO(edvinnn) Show dialog that requires the user to call requestPermissions() again.
                 }
             }
 
             case PERMISSION_CALL_PHONE: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    // TODO(edvinnn) Tell the user to fuck off, i.e. show dialog that requires the user to call requestPermissions() again.
+                    // TODO(edvinnn) Show dialog that requires the user to call requestPermissions() again.
                 }
             }
         }
