@@ -70,17 +70,26 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/contactButton" />
+        android:id="@+id/contactButton"
+        android:background="@color/colorAccent"
+        android:drawableStart="@drawable/ic_contacts_white_24dp"
+        android:gravity="start|center_vertical"
+        android:drawablePadding="6sp"
+        android:textColor="?android:attr/colorForeground"
+        android:paddingStart="5sp"
+        android:paddingEnd="5sp" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
+        android:layout_gravity="bottom|end"
+        app:srcCompat="@drawable/ic_save_white_24dp"
         app:fabSize="normal"
-        app:srcCompat="@android:drawable/ic_menu_save"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/fabSave" />
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
