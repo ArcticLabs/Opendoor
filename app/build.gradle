@@ -56,5 +56,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.android.support:support-v4:25.0.0'
     compile 'com.android.support:support-vector-drawable:25.0.0'
+    compile 'com.github.paolorotolo:appintro:4.1.0'
     testCompile 'junit:junit:4.12'
 }
