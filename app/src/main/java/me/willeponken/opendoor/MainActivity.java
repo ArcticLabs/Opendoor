@@ -17,7 +17,6 @@ package me.willeponken.opendoor;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_READ_PHONE_STATE = 2;
     private static final int PERMISSION_CALL_PHONE = 3;
 
-    SharedPreferences userDatabase;
     ListView userListView;
 
     @Override
@@ -51,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        userDatabase = this.getPreferences(this.MODE_PRIVATE);
 
         if (Database.firstTimeRunning(getApplicationContext())) {
             Database.hasRunFirstTime(getApplicationContext());

@@ -18,6 +18,7 @@ package me.willeponken.opendoor;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
@@ -78,7 +79,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
-            if (preference instanceof EditTextPreference && preference.getKey().equals(Database.SETTINGS_KEY_DIAL_NUMBER)) {
+            if (preference instanceof EditTextPreference) {
                 preference.setSummary(value.toString());
             }
             return true;
@@ -94,16 +95,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      *
      * @see #sBindPreferenceSummaryToValueListener
      */
-    private static void bindPreferenceSummaryToValue(Preference preference) {
+    private static void bindPreferenceSummaryToValue(Preference preference, SharedPreferences sharedPreferences) {
         // Set the listener to watch for value changes.
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
 
         // Trigger the listener immediately with the preference's
         // current value.
         sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
-                PreferenceManager
-                        .getDefaultSharedPreferences(preference.getContext())
-                        .getString(preference.getKey(), ""));
+                sharedPreferences.getString(preference.getKey(), ""));
     }
 
     /**
@@ -117,13 +116,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
 
             // Use custom preference file (same as where the Database class writes to)
-            getPreferenceManager().setSharedPreferencesName(Database.SETTINGS_FILE_KEY);
+            PreferenceManager preferenceManager = getPreferenceManager();
+            preferenceManager.setSharedPreferencesName(Database.SETTINGS_FILE_KEY);
 
             addPreferencesFromResource(R.xml.pref_general);
             setHasOptionsMenu(true);
 
             // Update preferences summary to current value
-            bindPreferenceSummaryToValue(findPreference("settings_dial_number"));
+            bindPreferenceSummaryToValue(findPreference("settings_dial_number"),
+                    preferenceManager.getSharedPreferences());
         }
 
         @Override
