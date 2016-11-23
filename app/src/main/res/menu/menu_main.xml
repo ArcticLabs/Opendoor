@@ -19,6 +19,9 @@
     tools:context="me.willeponken.opendoor.MainActivity" >
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
         app:showAsAction="never" />
+    <item
+        android:title="About"
+        android:orderInCategory="102" />
 </menu>

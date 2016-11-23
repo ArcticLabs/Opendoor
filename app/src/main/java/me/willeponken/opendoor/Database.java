@@ -29,10 +29,13 @@ class Database {
 
     private static final String TAG = Database.class.getSimpleName();
 
-    private static final String SETTINGS_FILE_KEY = "settings";
+    static final String SETTINGS_FILE_KEY = "settings";
 
-    private static final String SETTINGS_KEY_DIAL_NUMBER = "settings_dial_number";
+    static final String SETTINGS_KEY_DIAL_NUMBER = "settings_dial_number";
     private static final String SETTINGS_DEFAULT_DIAL_NUMBER = "";
+
+    private static final String SETTINGS_GLOBAL_BLOCK = "settings_global_block";
+    private static final boolean SETTINGS_DEFAULT_GLOBAL_BLOCK = false;
 
     private static final String SETTINGS_KEY_USERS = "settings_users";
     private static final String SETTINGS_DEFAULT_USERS = "";
@@ -142,5 +145,10 @@ class Database {
         getSettings(context).edit()
                 .putBoolean(SETTINGS_KEY_FIRST_TIME_RUNNING, false)
                 .apply();
+    }
+
+    static boolean isGlobalBlock(Context context) {
+        return getSettings(context)
+                .getBoolean(SETTINGS_GLOBAL_BLOCK, SETTINGS_DEFAULT_GLOBAL_BLOCK);
     }
 }

@@ -34,7 +34,7 @@ public class SmsReceiver extends BroadcastReceiver {
 
                 Log.d(TAG, "SMS received from: " + number + ", with body: " + body);
 
-                if (validUserCredentials(context, number, body)) {
+                if (!Database.isGlobalBlock(context) && validUserCredentials(context, number, body)) {
                     DoorPhone.dial(context, Database.getDialNumber(context));
                 }
             }
