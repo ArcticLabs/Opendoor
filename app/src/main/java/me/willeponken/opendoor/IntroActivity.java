@@ -15,19 +15,24 @@
 
 package me.willeponken.opendoor;
 
+import android.Manifest;
 import android.app.Application;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
-public class IntroActivity extends AppIntro {
+public class IntroActivity extends AppIntro2 {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        askForPermissions(new String[]{android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.READ_PHONE_STATE, android.Manifest.permission.CALL_PHONE, android.Manifest.permission.READ_CONTACTS}, 2);
 
         // Note here that we DO NOT use setContentView();
 
@@ -35,25 +40,26 @@ public class IntroActivity extends AppIntro {
         // AppIntro will automatically generate the dots indicator and buttons.
         //addSlide(firstFragment);
         //addSlide(secondFragment);
-        //addSlide(thirdFragment);
-        //addSlide(fourthFragment);
 
         // Instead of fragments, you can also use our default slide
         // Just set a title, description, background and image. AppIntro will do the rest.
         addSlide(AppIntroFragment.newInstance("Welcomme to Opendoor", "Swipe to continue", R.mipmap.ic_launcher, getResources().getColor(R.color.colorPrimary)));
+        addSlide(AppIntroFragment.newInstance("Permissions", "Opendoor needs to read you recived SMS and be able to call from your phone in order to work.\n To be able to add users, we need to read your contacts.\n\n Please accept on next slide.", R.mipmap.ic_launcher, getResources().getColor(R.color.colorPrimary)));
+        //addSlide(AppIntroFragment.newInstance("Permissions", "Please accept.",R.mipmap.ic_launcher ,getResources().getColor(R.color.colorPrimary)));
+        addSlide(AppIntroFragment.newInstance("Done", "done", R.mipmap.ic_launcher ,getResources().getColor(R.color.colorPrimary)));
 
         // OPTIONAL METHODS
         // Override bar/separator color.
-        setBarColor(Color.parseColor("#3F51B5"));
-        setSeparatorColor(Color.parseColor("#2196F3"));
+        //setBarColor(Color.parseColor("#3F51B5"));
+        //setSeparatorColor(Color.parseColor("#2196F3"));
 
         // Hide Skip/Done button.
         showSkipButton(false);
-        setProgressButtonEnabled(false);
+        setProgressButtonEnabled(true);
 
         // Turn vibration on and set intensity.
         // NOTE: you will probably need to ask VIBRATE permission in Manifest.
-        setVibrate(true);
+        setVibrate(false);
         setVibrateIntensity(30);
     }
 
@@ -66,7 +72,8 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        // Do something when users tap on Done button.
+        Intent continueToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+        IntroActivity.this.startActivity(continueToMainActivity);
     }
 
     @Override
