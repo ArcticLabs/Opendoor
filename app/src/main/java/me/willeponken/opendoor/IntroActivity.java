@@ -22,6 +22,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.widget.EditText;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntro2;
@@ -31,27 +32,10 @@ public class IntroActivity extends AppIntro2 {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         askForPermissions(new String[]{android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.READ_PHONE_STATE, android.Manifest.permission.CALL_PHONE, android.Manifest.permission.READ_CONTACTS}, 2);
-
-        // Note here that we DO NOT use setContentView();
-
-        // Add your slide fragments here.
-        // AppIntro will automatically generate the dots indicator and buttons.
-        //addSlide(firstFragment);
-        //addSlide(secondFragment);
-
-        // Instead of fragments, you can also use our default slide
-        // Just set a title, description, background and image. AppIntro will do the rest.
-        addSlide(AppIntroFragment.newInstance("Welcomme to Opendoor", "Swipe to continue", R.mipmap.ic_launcher, getResources().getColor(R.color.colorPrimary)));
-        addSlide(AppIntroFragment.newInstance("Permissions", "Opendoor needs to read you recived SMS and be able to call from your phone in order to work.\n To be able to add users, we need to read your contacts.\n\n Please accept on next slide.", R.mipmap.ic_launcher, getResources().getColor(R.color.colorPrimary)));
-        //addSlide(AppIntroFragment.newInstance("Permissions", "Please accept.",R.mipmap.ic_launcher ,getResources().getColor(R.color.colorPrimary)));
-        addSlide(AppIntroFragment.newInstance("Done", "done", R.mipmap.ic_launcher ,getResources().getColor(R.color.colorPrimary)));
-
-        // OPTIONAL METHODS
-        // Override bar/separator color.
-        //setBarColor(Color.parseColor("#3F51B5"));
-        //setSeparatorColor(Color.parseColor("#2196F3"));
+        addSlide(SampleSlide.newInstance(R.layout.fragment_initial));
+        addSlide(SampleSlide.newInstance(R.layout.fragment_initial1));
+        addSlide(SampleSlide.newInstance(R.layout.fragment_initial2));
 
         // Hide Skip/Done button.
         showSkipButton(false);
@@ -72,6 +56,8 @@ public class IntroActivity extends AppIntro2 {
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
+        EditText editText_default = (EditText)findViewById(R.id.defaultNumber);
+        Database.setDialNumber(getApplicationContext(), editText_default.getText().toString());
         Intent continueToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
         IntroActivity.this.startActivity(continueToMainActivity);
     }

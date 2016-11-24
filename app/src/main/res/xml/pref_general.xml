@@ -33,8 +33,8 @@
         android:defaultValue="false"
         android:title="Block all users"
         android:key="settings_global_block"
-        android:summary="Disable all incoming SMS passphrases"/>
-        <!--android:icon="@drawable/ic_block_black_24dp"-->
+        android:summary="Disable all incoming SMS passphrases"
+        android:icon="@drawable/ic_block_black_24dp"/>
     <EditTextPreference
         android:defaultValue="@string/pref_default_dial_phone_number"
         android:inputType="phone"
@@ -42,8 +42,8 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="@string/pref_title_dial_phone_number"/>
-        <!--android:icon="@drawable/ic_phone_black_24dp"
-        android:dialogIcon="@drawable/ic_phone_black_24dp"-->
+        android:title="@string/pref_title_dial_phone_number"
+        android:icon="@drawable/ic_phone_black_24dp"
+        android:dialogIcon="@drawable/ic_phone_black_24dp"/>
 
 </PreferenceScreen>
