@@ -91,4 +91,5 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_initial">InitialActivity</string>
     <string name="section_format">Välkommen till Opendoor!</string>
+    <string name="title_activity_about">AboutActivity</string>
 </resources>

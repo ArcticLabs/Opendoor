@@ -15,7 +15,6 @@
 
 package me.willeponken.opendoor;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -34,7 +33,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = DoorPhone.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private static final int PERMISSION_ALL = 0;
     private static final int PERMISSION_RECEIVE_SMS = 1;
@@ -100,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.action_about) {
+            Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

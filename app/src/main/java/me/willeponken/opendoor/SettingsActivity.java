@@ -123,7 +123,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             setHasOptionsMenu(true);
 
             // Update preferences summary to current value
-            bindPreferenceSummaryToValue(findPreference("settings_dial_number"),
+            bindPreferenceSummaryToValue(findPreference(Database.SETTINGS_KEY_DIAL_NUMBER),
                     preferenceManager.getSharedPreferences());
         }
 
