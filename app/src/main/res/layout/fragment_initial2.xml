@@ -26,7 +26,7 @@
     tools:context="me.willeponken.opendoor.IntroActivity">
 
     <TextView
-        android:text="Set default number"
+        android:text="@string/set_default_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -49,7 +49,7 @@
         android:textColorLink="@android:color/white" />
 
     <TextView
-        android:text="Enter the number to call on a recived SMS"
+        android:text="@string/default_number_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/defaultNumber"

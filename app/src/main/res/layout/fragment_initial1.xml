@@ -36,7 +36,7 @@
         android:textColor="@android:color/background_light" />
 
     <TextView
-        android:text="For Opendoor to work, we need some permissions. Please accept them on the next slide."
+        android:text="@string/description_permissions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

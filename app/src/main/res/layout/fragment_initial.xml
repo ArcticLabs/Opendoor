@@ -26,7 +26,7 @@
     tools:context="me.willeponken.opendoor.IntroActivity">
 
     <TextView
-        android:text="Välkommen till Opendoor"
+        android:text="@string/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

@@ -58,7 +58,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".IntroActivity"
-            android:label="Setup" />
+            android:label="" />
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about"
