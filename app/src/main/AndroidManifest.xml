@@ -62,6 +62,8 @@
             android:name=".InitialActivity"
             android:label="@string/title_activity_initial"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".IntroActivity"
+            android:label="Setup" />
     </application>
 
 </manifest>

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Intent firstTime = new Intent(getApplicationContext(), InitialActivity.class);
+        Intent firstTime = new Intent(getApplicationContext(), IntroActivity.class);
         MainActivity.this.startActivity(firstTime);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
