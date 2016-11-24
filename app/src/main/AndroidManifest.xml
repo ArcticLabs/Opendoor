@@ -57,10 +57,6 @@
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".InitialActivity"
-            android:label="@string/title_activity_initial"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".IntroActivity"
             android:label="Setup" />
         <activity
