@@ -45,16 +45,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent firstTime = new Intent(getApplicationContext(), IntroActivity.class);
+        MainActivity.this.startActivity(firstTime);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (Database.firstTimeRunning(getApplicationContext())) {
+        /**if (Database.firstTimeRunning(getApplicationContext())) {
             Database.hasRunFirstTime(getApplicationContext());
             Intent firstTime = new Intent(getApplicationContext(), InitialActivity.class);
             MainActivity.this.startActivity(firstTime);
-        }
+        }**/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        requestPermission(new String[]{
+        /**requestPermission(new String[]{
                 // Check for RECEIVE_SMS permission. This permission is needed for retrieving the latest
                 // SMS and reading it checking for a passphrase to call the open telephone number.
                 Manifest.permission.RECEIVE_SMS,
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.CALL_PHONE,
                 // Check for READ_CONTACTS. This permission is required for adding a contact using contact view.
                 Manifest.permission.READ_CONTACTS
-        }, PERMISSION_ALL);
+        }, PERMISSION_ALL); **/
 
         createUserListView();
     }
