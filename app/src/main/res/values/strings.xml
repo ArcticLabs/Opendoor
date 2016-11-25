@@ -94,7 +94,7 @@
     <string name="title_activity_about">About</string>
     <string name="welcome">Welcome to Opendoor</string>
     <string name="permissions">Permissions</string>
-    <string name="description_permissions">For Opendoor to work, we need you to accept the following permissions. They are crucial and the app will not run without them</string>
+    <string name="description_permissions">For Opendoor to work, we need you to accept the following permissions. They are crucial and the app will not run without them.</string>
     <string name="set_default_number">Set default number</string>
-    <string name="default_number_description">Enter the number to call on a recived SMS</string>
+    <string name="default_number_description">Enter the number to call on a recived SMS.</string>
 </resources>

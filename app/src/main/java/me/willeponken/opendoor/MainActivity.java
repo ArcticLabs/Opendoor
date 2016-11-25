@@ -16,14 +16,10 @@
 package me.willeponken.opendoor;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,11 +31,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private static final int PERMISSION_ALL = 0;
-    private static final int PERMISSION_RECEIVE_SMS = 1;
-    private static final int PERMISSION_READ_PHONE_STATE = 2;
-    private static final int PERMISSION_CALL_PHONE = 3;
-
     ListView userListView;
 
     @Override
@@ -49,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             Intent firstTime = new Intent(getApplicationContext(), IntroActivity.class);
             MainActivity.this.startActivity(firstTime);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -103,53 +95,6 @@ public class MainActivity extends AppCompatActivity {
             );
 
             userListView.setAdapter(usersAdapter);
-        }
-    }
-
-    private void requestPermission(String[] permissions, int code) {
-        boolean request = false;
-
-        for (String permission: permissions) {
-            if (ContextCompat.checkSelfPermission(this, permission)
-                    == PackageManager.PERMISSION_DENIED) {
-                Log.d(TAG, "Permission: " + permission + " denied");
-
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
-                    // TODO(edvinnn): Show permission rationale.
-                }
-
-                request = true;
-            }
-        }
-
-        if (request) {
-            ActivityCompat.requestPermissions(this, permissions, code);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch(requestCode) {
-            case PERMISSION_RECEIVE_SMS: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    // TODO(edvinnn) Show dialog that requires the user to call requestPermissions() again.
-                }
-            }
-
-            case PERMISSION_READ_PHONE_STATE: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    // TODO(edvinnn) Show dialog that requires the user to call requestPermissions() again.
-                }
-            }
-
-            case PERMISSION_CALL_PHONE: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    // TODO(edvinnn) Show dialog that requires the user to call requestPermissions() again.
-                }
-            }
         }
     }
 }
