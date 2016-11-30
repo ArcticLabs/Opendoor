@@ -23,7 +23,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -88,12 +87,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<User> users = Database.getUsers(getApplicationContext());
 
         if (users != null) {
-            ArrayAdapter<User> usersAdapter = new ArrayAdapter<User>(
-                    this,
-                    android.R.layout.simple_list_item_1,
-                    users
-            );
-
+            UserListAdapter usersAdapter = new UserListAdapter(users, this);
             userListView.setAdapter(usersAdapter);
         }
     }

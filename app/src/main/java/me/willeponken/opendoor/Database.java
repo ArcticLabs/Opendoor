@@ -125,6 +125,20 @@ class Database {
         }
     }
 
+    static void removeUser(Context context, User user) {
+        ArrayList<User> users = getUsers(context);
+
+        if (users != null) {
+            ListIterator<User> iterator = getUserPosition(context, user);
+            if (iterator != null) {
+                users.remove(iterator.nextIndex()-1);
+                getSettings(context).edit()
+                        .putString(SETTINGS_KEY_USERS, new Gson().toJson(users))
+                        .apply();
+            }
+        }
+    }
+
     static String getDialNumber(Context context) {
         return getSettings(context)
                 .getString(SETTINGS_KEY_DIAL_NUMBER, SETTINGS_DEFAULT_DIAL_NUMBER);
