@@ -15,24 +15,24 @@
 
 package me.willeponken.opendoor;
 
-import android.Manifest;
-import android.app.Application;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.widget.EditText;
 
-import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntro2;
-import com.github.paolorotolo.appintro.AppIntroFragment;
 
 public class IntroActivity extends AppIntro2 {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        askForPermissions(new String[]{android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.READ_PHONE_STATE, android.Manifest.permission.CALL_PHONE, android.Manifest.permission.READ_CONTACTS}, 2);
+        askForPermissions(new String[]{
+                android.Manifest.permission.RECEIVE_SMS,
+                android.Manifest.permission.READ_PHONE_STATE,
+                android.Manifest.permission.CALL_PHONE,
+                android.Manifest.permission.READ_CONTACTS,
+                android.Manifest.permission.PROCESS_OUTGOING_CALLS}, 2);
         addSlide(SampleSlide.newInstance(R.layout.fragment_initial));
         addSlide(SampleSlide.newInstance(R.layout.fragment_initial1));
         addSlide(SampleSlide.newInstance(R.layout.fragment_initial2));

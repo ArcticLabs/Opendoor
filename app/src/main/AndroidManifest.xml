@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <uses-feature android:name="android.hardware.telephony" />
@@ -34,8 +35,16 @@
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BROADCAST_SMS">
-            <intent-filter android:priority="2147483647">
+            <intent-filter android:priority="2147483647"><!-- High priority in case apps try to block broadcast -->
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".PhoneReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="2147483647"> <!-- High priority in case apps try to block broadcast -->
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
             </intent-filter>
         </receiver>
         <activity

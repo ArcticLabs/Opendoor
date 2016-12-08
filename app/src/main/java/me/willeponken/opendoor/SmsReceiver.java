@@ -19,6 +19,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Telephony;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
@@ -42,12 +43,12 @@ public class SmsReceiver extends BroadcastReceiver {
     }
 
     private boolean validUserCredentials(Context context, String number, String body) {
-        User user = Database.getUserFromNumber(context, number);
-
-        String providedPassword = body.trim();
-        String userPassword = user.password.trim();
+        User user = Database.getUserFromNumber(context, PhoneNumberUtils.normalizeNumber(number));
 
         if (user != null && user.active) {
+            String providedPassword = body.trim();
+            String userPassword = user.password.trim();
+
             if ((user.caseSensitive && userPassword.equalsIgnoreCase(providedPassword))
                     || userPassword.equals(providedPassword)) {
                 return true;

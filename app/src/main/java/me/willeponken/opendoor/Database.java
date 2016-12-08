@@ -18,6 +18,7 @@ package me.willeponken.opendoor;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
+import android.telephony.PhoneNumberUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -33,6 +34,9 @@ class Database {
 
     static final String SETTINGS_KEY_DIAL_NUMBER = "settings_dial_number";
     private static final String SETTINGS_DEFAULT_DIAL_NUMBER = "";
+
+    private static final String SETTINGS_KEY_SLEEP_TIME = "settings_sleep_time";
+    private static final int SETTINGS_DEFAULT_SLEEP_TIME = 20;
 
     private static final String SETTINGS_GLOBAL_BLOCK = "settings_global_block";
     private static final boolean SETTINGS_DEFAULT_GLOBAL_BLOCK = false;
@@ -146,7 +150,7 @@ class Database {
 
     static void setDialNumber(Context context, String number) {
         getSettings(context).edit()
-                .putString(SETTINGS_KEY_DIAL_NUMBER, number)
+                .putString(SETTINGS_KEY_DIAL_NUMBER, PhoneNumberUtils.normalizeNumber(number))
                 .apply();
     }
 
@@ -164,5 +168,16 @@ class Database {
     static boolean isGlobalBlock(Context context) {
         return getSettings(context)
                 .getBoolean(SETTINGS_GLOBAL_BLOCK, SETTINGS_DEFAULT_GLOBAL_BLOCK);
+    }
+
+    static void setSleepTime(Context context, int seconds) {
+        getSettings(context).edit()
+                .putInt(SETTINGS_KEY_SLEEP_TIME, seconds)
+                .apply();
+    }
+
+    static int getSleepTime(Context context) {
+        return getSettings(context)
+                .getInt(SETTINGS_KEY_SLEEP_TIME, SETTINGS_DEFAULT_SLEEP_TIME);
     }
 }
