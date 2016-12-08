@@ -19,29 +19,27 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Contacts;
 import android.provider.ContactsContract;
-import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.QuickContactBadge;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class NewUserActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity {
 
     static public final int CONTACT = 0;
 
-    EditText name_input;
-    EditText phone_input;
-    EditText password_input;
+    static final String EDIT_USER_NAME_KEY = "edit_user_name";
+    static final String EDIT_USER_PHONE_KEY = "edit_user_phone";
+    static final String EDIT_USER_PASSWORD_KEY = "edit_user_password";
+    static final String EDIT_USER_KEY = "edit_user";
+
+    EditText nameInput;
+    EditText phoneInput;
+    EditText passwordInput;
 
     FloatingActionButton fab;
     Button contactBtn;
@@ -49,11 +47,22 @@ public class NewUserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_user);
+        setContentView(R.layout.activity_user);
 
-        name_input        = (EditText)findViewById(R.id.editText);
-        phone_input       = (EditText)findViewById(R.id.editText2);
-        password_input    = (EditText)findViewById(R.id.editText3);
+        nameInput = (EditText)findViewById(R.id.editText);
+        phoneInput = (EditText)findViewById(R.id.editText2);
+        passwordInput = (EditText)findViewById(R.id.editText3);
+
+        // Retrieve data from parent activity if edit mode
+        Bundle stateExtras = getIntent().getExtras();
+        if (stateExtras != null) {
+            if (stateExtras.getBoolean(EDIT_USER_KEY, false)) {
+                setTitle("Edit user");
+                nameInput.setText(stateExtras.getString(EDIT_USER_NAME_KEY, ""));
+                phoneInput.setText(stateExtras.getString(EDIT_USER_PHONE_KEY, ""));
+                passwordInput.setText(stateExtras.getString(EDIT_USER_PASSWORD_KEY, ""));
+            }
+        }
 
         fab = (FloatingActionButton) findViewById(R.id.fabSave);
         contactBtn = (Button)findViewById(R.id.contactButton);
@@ -62,7 +71,7 @@ public class NewUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (name_input.getText().length() == 0 || phone_input.getText().length() == 0 || password_input.getText().length() == 0){
+                if (nameInput.getText().length() == 0 || phoneInput.getText().length() == 0 || passwordInput.getText().length() == 0){
 
                     // Build toast
                     Context context = getApplicationContext();
@@ -75,9 +84,9 @@ public class NewUserActivity extends AppCompatActivity {
 
                 } else {
 
-                    String name        = name_input.getText().toString();
-                    String phone       = phone_input.getText().toString();
-                    String password    = password_input.getText().toString();
+                    String name        = nameInput.getText().toString();
+                    String phone       = phoneInput.getText().toString();
+                    String password    = passwordInput.getText().toString();
 
                     Database.addUser(getApplicationContext(), new User(name, phone, password, true, true));
 
@@ -125,8 +134,8 @@ public class NewUserActivity extends AppCompatActivity {
                         }
                         phoneCursor.close();
                     }
-                    name_input.setText(contactName);
-                    phone_input.setText(phoneNumber);
+                    nameInput.setText(contactName);
+                    phoneInput.setText(phoneNumber);
                 }
         }
     }

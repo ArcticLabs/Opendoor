@@ -18,6 +18,7 @@ package me.willeponken.opendoor;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,7 +94,15 @@ class UserListAdapter extends BaseAdapter implements ListAdapter{
         editBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                // TODO(willeponken): OPEN EDIT POPUP
+                Intent userActivity = new Intent(context, UserActivity.class);
+
+                userActivity.putExtra(UserActivity.EDIT_USER_KEY, true);
+                userActivity.putExtra(UserActivity.EDIT_USER_NAME_KEY, user.name);
+                userActivity.putExtra(UserActivity.EDIT_USER_PASSWORD_KEY, user.password);
+                userActivity.putExtra(UserActivity.EDIT_USER_PHONE_KEY, user.number);
+
+                context.startActivity(userActivity);
+
                 notifyDataSetChanged();
             }
         });
