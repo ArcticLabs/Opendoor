@@ -43,6 +43,8 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        TextView aboutTitle = (TextView)findViewById(R.id.textViewAboutTitle);
+        aboutTitle.setText(getString(R.string.general_app_name) + " " + BuildConfig.VERSION_NAME);
 
         TextView licenseText = (TextView)findViewById(R.id.textViewAboutLicense);
         try {
