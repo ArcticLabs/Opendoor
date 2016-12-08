@@ -26,7 +26,7 @@
     tools:context="me.willeponken.opendoor.IntroActivity">
 
     <TextView
-        android:text="Permissions"
+        android:text="@string/intro_activity_permissions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -36,7 +36,7 @@
         android:textColor="@android:color/background_light" />
 
     <TextView
-        android:text="@string/description_permissions"
+        android:text="@string/intro_activity_description_permissions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

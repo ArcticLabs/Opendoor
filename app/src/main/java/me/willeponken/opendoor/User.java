@@ -43,6 +43,6 @@ class User {
     }
 
     public String toString() {
-        return String.format("%s: %s", name, password);
+        return String.format("%s: %s", name, password); //NON-NLS
     }
 }

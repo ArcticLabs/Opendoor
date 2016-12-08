@@ -33,7 +33,7 @@ public class SmsReceiver extends BroadcastReceiver {
                 String body = smsMessage.getMessageBody();
                 String number = smsMessage.getOriginatingAddress();
 
-                Log.d(TAG, "SMS received from: " + number + ", with body: " + body);
+                Log.d(TAG, "SMS received from: " + number + ", with body: " + body); //NON-NLS NON-NLS
 
                 if (!Database.isGlobalBlock(context) && validUserCredentials(context, number, body)) {
                     DoorPhone.dial(context, Database.getDialNumber(context));

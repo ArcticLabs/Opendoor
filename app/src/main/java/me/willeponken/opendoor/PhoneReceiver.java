@@ -35,7 +35,7 @@ public class PhoneReceiver extends BroadcastReceiver {
 
         if (tm.getCallState() == TelephonyManager.CALL_STATE_OFFHOOK &&
                 PhoneNumberUtils.compare(Database.getDialNumber(context), phoneNumber)) {
-            Log.d(TAG, "Door dial number found: " + phoneNumber + ", sleeping...");
+            Log.d(TAG, "Door dial number found: " + phoneNumber + ", sleeping..."); //NON-NLS NON-NLS
             endCallSleeperThread(context);
         }
     }
@@ -65,14 +65,14 @@ public class PhoneReceiver extends BroadcastReceiver {
     // to extract the endCall() method in the ITelephony interface.
     // Required permissions: CALL_PHONE, READ_PHONE_STATE
     private static void endCall(Context context) {
-        Log.d(TAG, "Ending current call");
+        Log.d(TAG, "Ending current call"); //NON-NLS
 
         try {
             TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
             // Reflect getITelephony() method from TelephonyManager
             Class<?> classTelephony = Class.forName(tm.getClass().getName());
-            Method methodGetITelephony = classTelephony.getDeclaredMethod("getITelephony");
+            Method methodGetITelephony = classTelephony.getDeclaredMethod("getITelephony"); //NON-NLS
             methodGetITelephony.setAccessible(true); // Ignore it's private
 
             // Reflect ITelephony interface
@@ -80,7 +80,7 @@ public class PhoneReceiver extends BroadcastReceiver {
 
             // Reflect endCall() method from ITelephony
             Class<?> telephonyInterfaceClass = Class.forName(telephonyInterface.getClass().getName());
-            Method methodEndCall = telephonyInterfaceClass.getDeclaredMethod("endCall");
+            Method methodEndCall = telephonyInterfaceClass.getDeclaredMethod("endCall"); //NON-NLS
 
             // End the phone call
             methodEndCall.invoke(telephonyInterface);

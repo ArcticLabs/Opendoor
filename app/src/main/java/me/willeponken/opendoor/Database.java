@@ -30,21 +30,21 @@ class Database {
 
     private static final String TAG = Database.class.getSimpleName();
 
-    static final String SETTINGS_FILE_KEY = "settings";
+    static final String SETTINGS_FILE_KEY = "settings"; //NON-NLS
 
-    static final String SETTINGS_KEY_DIAL_NUMBER = "settings_dial_number";
+    static final String SETTINGS_KEY_DIAL_NUMBER = "settings_dial_number"; //NON-NLS
     private static final String SETTINGS_DEFAULT_DIAL_NUMBER = "";
 
-    private static final String SETTINGS_KEY_SLEEP_TIME = "settings_sleep_time";
+    private static final String SETTINGS_KEY_SLEEP_TIME = "settings_sleep_time"; //NON-NLS
     private static final int SETTINGS_DEFAULT_SLEEP_TIME = 20;
 
-    private static final String SETTINGS_GLOBAL_BLOCK = "settings_global_block";
+    private static final String SETTINGS_GLOBAL_BLOCK = "settings_global_block"; //NON-NLS
     private static final boolean SETTINGS_DEFAULT_GLOBAL_BLOCK = false;
 
-    private static final String SETTINGS_KEY_USERS = "settings_users";
+    private static final String SETTINGS_KEY_USERS = "settings_users"; //NON-NLS
     private static final String SETTINGS_DEFAULT_USERS = "";
 
-    private static final String SETTINGS_KEY_FIRST_TIME_RUNNING = "settings_first_time_running";
+    private static final String SETTINGS_KEY_FIRST_TIME_RUNNING = "settings_first_time_running"; //NON-NLS
     private static final boolean SETTINGS_DEFAULT_FIRST_TIME_RUNNING = true;
 
     private static SharedPreferences getSettings(Context context) {

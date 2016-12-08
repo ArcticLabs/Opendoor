@@ -32,10 +32,10 @@ public class UserActivity extends AppCompatActivity {
 
     static public final int CONTACT = 0;
 
-    static final String EDIT_USER_NAME_KEY = "edit_user_name";
-    static final String EDIT_USER_PHONE_KEY = "edit_user_phone";
-    static final String EDIT_USER_PASSWORD_KEY = "edit_user_password";
-    static final String EDIT_USER_KEY = "edit_user";
+    static final String EDIT_USER_NAME_KEY = "edit_user_name"; //NON-NLS
+    static final String EDIT_USER_PHONE_KEY = "edit_user_phone"; //NON-NLS
+    static final String EDIT_USER_PASSWORD_KEY = "edit_user_password"; //NON-NLS
+    static final String EDIT_USER_KEY = "edit_user"; //NON-NLS
 
     EditText nameInput;
     EditText phoneInput;
@@ -57,7 +57,7 @@ public class UserActivity extends AppCompatActivity {
         Bundle stateExtras = getIntent().getExtras();
         if (stateExtras != null) {
             if (stateExtras.getBoolean(EDIT_USER_KEY, false)) {
-                setTitle("Edit user");
+                setTitle(getString(R.string.user_activity_title_edit_user));
                 nameInput.setText(stateExtras.getString(EDIT_USER_NAME_KEY, ""));
                 phoneInput.setText(stateExtras.getString(EDIT_USER_PHONE_KEY, ""));
                 passwordInput.setText(stateExtras.getString(EDIT_USER_PASSWORD_KEY, ""));
@@ -76,7 +76,7 @@ public class UserActivity extends AppCompatActivity {
                     // Build toast
                     Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
-                    CharSequence errorMsg = "Incorrect input. Please enter all fields.";
+                    CharSequence errorMsg = getString(R.string.user_activity_error_incorrect_input);
 
                     // Show toast
                     Toast toast = Toast.makeText(context, errorMsg, duration);

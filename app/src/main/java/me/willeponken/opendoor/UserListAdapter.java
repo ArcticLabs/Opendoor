@@ -72,10 +72,11 @@ class UserListAdapter extends BaseAdapter implements ListAdapter{
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder deleteBuilder = new AlertDialog.Builder(context)
-                        .setMessage("Do you want to delete " + user.name + "?")
-                        .setTitle("Delete user");
+                        .setMessage(
+                                context.getString(R.string.user_list_adapter_delete_question) + " " + user.name + context.getString(R.string.user_list_adapter_delete_question_mark)) //NON-NLS
+                        .setTitle(context.getString(R.string.user_list_adapter_delete_user));
 
-                deleteBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                deleteBuilder.setPositiveButton(context.getString(R.string.general_yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id) {
                         Database.removeUser(context, user);
@@ -84,7 +85,7 @@ class UserListAdapter extends BaseAdapter implements ListAdapter{
                     }
                 });
 
-                deleteBuilder.setNegativeButton("No", null);
+                deleteBuilder.setNegativeButton(context.getString(R.string.general_no), null);
 
                 AlertDialog deleteDialog = deleteBuilder.create();
                 deleteDialog.show();

@@ -36,13 +36,13 @@
         android:summary="Disable all incoming SMS passphrases"
         android:icon="@drawable/ic_block_black_24dp"/>
     <EditTextPreference
-        android:defaultValue="@string/pref_default_dial_phone_number"
+        android:defaultValue="@string/settings_activity_default_dial_phone_number"
         android:inputType="phone"
         android:key="settings_dial_number"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="@string/pref_title_dial_phone_number"
+        android:title="@string/settings_activity_title_dial_phone_number"
         android:icon="@drawable/ic_phone_black_24dp"
         android:dialogIcon="@drawable/ic_phone_black_24dp"/>
 

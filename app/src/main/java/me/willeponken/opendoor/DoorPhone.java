@@ -27,11 +27,11 @@ class DoorPhone {
     static void dial(final Context context, String number) {
         number = PhoneNumberUtils.normalizeNumber(number);
 
-        Log.d(TAG, "Dialing phone number: " + number);
+        Log.d(TAG, "Dialing phone number: " + number); //NON-NLS
 
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // Required for Android below v7
-        callIntent.setData(Uri.parse("tel:" + number));
+        callIntent.setData(Uri.parse("tel:" + number)); //NON-NLS
 
         try {
             context.startActivity(callIntent); // Call dial number

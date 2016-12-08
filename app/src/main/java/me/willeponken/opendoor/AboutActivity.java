@@ -30,13 +30,30 @@
 
 package me.willeponken.opendoor;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        TextView licenseText = (TextView)findViewById(R.id.textViewAboutLicense);
+        try {
+            Resources resources = this.getResources();
+            InputStream reader = resources.openRawResource(R.raw.license);
+
+            byte[] bytes = new byte[reader.available()];
+            reader.read(bytes);
+            licenseText.setText(new String(bytes));
+        } catch (IOException e) {
+            licenseText.setText(getString(R.string.about_activity_error_no_license));
+        }
     }
 }

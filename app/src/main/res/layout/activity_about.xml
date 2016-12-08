@@ -42,7 +42,7 @@
     android:clickable="true">
 
     <TextView
-        android:text="Opendoor"
+        android:text="@string/general_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -55,7 +55,7 @@
         android:textAllCaps="false" />
 
     <TextView
-        android:text="Opendoor is open source software licensed under the GNU General Public License v3 (GPL v3)."
+        android:text="@string/about_activity_caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewAboutTitle"
@@ -64,4 +64,27 @@
         android:id="@+id/textViewAboutCaption"
         android:textIsSelectable="false"/>
 
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@+id/textViewAboutCaption"
+        android:layout_above="@+id/textViewAboutSourceCode">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="12sp"
+            android:id="@+id/textViewAboutLicense" />
+    </ScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:linksClickable="true"
+        android:autoLink="web"
+        android:id="@+id/textViewAboutSourceCode"
+        android:text="@string/about_activity_source_code" />
 </RelativeLayout>

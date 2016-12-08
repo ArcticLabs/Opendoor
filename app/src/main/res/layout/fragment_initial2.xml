@@ -26,7 +26,7 @@
     tools:context="me.willeponken.opendoor.IntroActivity">
 
     <TextView
-        android:text="@string/set_default_number"
+        android:text="@string/intro_activity_set_default_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -41,7 +41,7 @@
         android:inputType="phone"
         android:ems="10"
         android:id="@+id/defaultNumber"
-        android:hint="Default number"
+        android:hint="@string/intro_activity_default_number"
         android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -49,7 +49,7 @@
         android:textColorLink="@android:color/white" />
 
     <TextView
-        android:text="@string/default_number_description"
+        android:text="@string/intro_activity_default_number_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/defaultNumber"
