@@ -44,9 +44,12 @@ public class SmsReceiver extends BroadcastReceiver {
     private boolean validUserCredentials(Context context, String number, String body) {
         User user = Database.getUserFromNumber(context, number);
 
+        String providedPassword = body.trim();
+        String userPassword = user.password.trim();
+
         if (user != null && user.active) {
-            if ((user.caseSensitive && user.password.equalsIgnoreCase(body))
-                    || user.password.equals(body)) {
+            if ((user.caseSensitive && userPassword.equalsIgnoreCase(providedPassword))
+                    || userPassword.equals(providedPassword)) {
                 return true;
             }
         }
