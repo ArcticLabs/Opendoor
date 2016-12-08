@@ -4,6 +4,9 @@ Automatically open the main entrance of your apartment complex.
 
 Opendoor takes advantage of apartments that are equipped with locks that can be opened using a telephone call. By adding a passphrase and an allowed number, your friends can easily just message you their passphrase and this app will dial the number for opening your apartment complex main entrance.
 
+## Screenshots
+![Opendoor](opendoor-screenshots.png)
+
 ## Download
 Latest release can be found at:
 https://github.com/willeponken/Opendoor/releases
