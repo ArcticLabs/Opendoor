@@ -31,7 +31,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
-        versionName "0.0.1-${getGitHash()}"
+        versionName "1.0.0-beta-${getGitHash()}"
         buildConfigField "String", "GitHash", "\"${getGitHash()}\""
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
