@@ -19,6 +19,13 @@
     <string name="general_yes">Yes</string>
     <string name="general_no">No</string>
 
+    <!-- Shortcuts -->
+    <string name="shortcut_short_label_user">Add user</string>
+    <string name="shortcut_long_label_user">Add new user</string>
+    <string name="shortcut_disabeled">Disabeled</string>
+    <string name="shortcut_short_label_settings">Settings</string>
+    <string name="shortcut_long_label_settings">Settings</string>
+
     <!-- User Activity -->
     <string name="user_activity_title_edit_user">Edit user</string>
     <string name="user_activity_title_new_user">Add new user</string>
@@ -46,7 +53,8 @@
 
     <!-- Intro Activity -->
     <string name="intro_activity_welcome">Welcome to Opendoor</string>
-    <string name="intro_activity_description_permissions">For Opendoor to work, we need you to accept the following permissions. They are crucial and the app will not run without them.</string>
+    <string name="intro_activity_wel">This intro will help you setup Opendoor fast</string>
+    <string name="intro_activity_description_permissions">For Opendoor to work, you need to accept the permissions in the next step. The permissions are crucial and the app will not run without them.</string>
     <string name="intro_activity_permissions">Permissions</string>
     <string name="intro_activity_default_number">Default number</string>
     <string name="intro_activity_set_default_number">Set default number</string>

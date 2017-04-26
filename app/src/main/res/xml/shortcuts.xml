@@ -1,0 +1,34 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_settings"
+        android:shortcutShortLabel="@string/shortcut_short_label_settings"
+        android:shortcutLongLabel="@string/shortcut_long_label_settings"
+        android:shortcutDisabledMessage="@string/shortcut_disabeled">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="me.willeponken.opendoor"
+            android:targetClass="me.willeponken.opendoor.SettingsActivity" />
+        <!-- If your shortcut is associated with multiple intents, include them
+             here. The last intent in the list determines what the user sees when
+             they launch this shortcut. -->
+        <categories android:name="android.shortcut.settings" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="add"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_person_add"
+        android:shortcutShortLabel="@string/shortcut_short_label_user"
+        android:shortcutLongLabel="@string/shortcut_long_label_user"
+        android:shortcutDisabledMessage="@string/shortcut_disabeled">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="me.willeponken.opendoor"
+            android:targetClass="me.willeponken.opendoor.UserActivity" />
+        <!-- If your shortcut is associated with multiple intents, include them
+             here. The last intent in the list determines what the user sees when
+             they launch this shortcut. -->
+        <categories android:name="android.shortcut.add" />
+    </shortcut>
+</shortcuts>

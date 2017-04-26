@@ -56,21 +56,26 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data  android:name="android.app.shortcuts"
+                        android:resource="@xml/shortcuts" />
         </activity>
         <activity
             android:name=".UserActivity"
             android:label="@string/user_activity_title_new_user"
+            android:theme="@style/AppTheme.StatusTransparent"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/settings_activity_title"
+            android:theme="@style/AppTheme.StatusTransparent"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".IntroActivity"
-            android:label="" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AboutActivity"
             android:label="@string/about_activity_title"
+            android:theme="@style/AppTheme.StatusTransparent"
             android:parentActivityName=".MainActivity" />
     </application>
 

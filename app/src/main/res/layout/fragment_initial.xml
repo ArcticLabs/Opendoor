@@ -26,6 +26,17 @@
     tools:context="me.willeponken.opendoor.IntroActivity">
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/intro_activity_wel"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:layout_marginTop="59dp"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
         android:text="@string/intro_activity_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
