@@ -68,7 +68,7 @@ class Database {
 
         if (users != null) {
             for (User user : users) {
-                if (user.number.equals(number)) {
+                if (PhoneNumberUtils.compare(user.number, number)) {
                     return user;
                 }
             }
@@ -85,7 +85,7 @@ class Database {
             ListIterator<User> iterator;
             iterator = users.listIterator();
             while (iterator.hasNext()) {
-                if (iterator.next().number.equals(user.number)) {
+                if (PhoneNumberUtils.compare(iterator.next().number, user.number)) {
                     return iterator;
                 }
             }

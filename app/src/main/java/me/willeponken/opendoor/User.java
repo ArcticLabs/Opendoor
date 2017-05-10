@@ -30,6 +30,8 @@ class User {
         this.password = password;
         this.active = active;
         this.caseSensitive = caseSensitive;
+
+        System.out.println(this.number);
     }
 
     boolean toggleActive() {

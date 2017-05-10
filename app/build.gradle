@@ -57,5 +57,6 @@ dependencies {
     compile 'com.android.support:support-v4:25.0.1'
     compile 'com.android.support:support-vector-drawable:25.0.1'
     compile 'com.github.paolorotolo:appintro:4.1.0'
+    compile 'com.karumi:dexter:4.1.0'
     testCompile 'junit:junit:4.12'
 }

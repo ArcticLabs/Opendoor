@@ -15,6 +15,7 @@
 
 package me.willeponken.opendoor;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,13 +25,22 @@ import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.DexterBuilder;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.single.BasePermissionListener;
+import com.karumi.dexter.listener.single.CompositePermissionListener;
+import com.karumi.dexter.listener.single.PermissionListener;
+import com.karumi.dexter.listener.single.SnackbarOnDeniedPermissionListener;
+
 public class UserActivity extends AppCompatActivity {
 
-    static public final int CONTACT = 0;
+    static final int CALLBACK_ADD_CONTACT = 0;
 
     static final String EDIT_USER_NAME_KEY = "edit_user_name"; //NON-NLS
     static final String EDIT_USER_PHONE_KEY = "edit_user_phone"; //NON-NLS
@@ -48,6 +58,9 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        final Activity activity = this;
+        ViewGroup rootView = (ViewGroup) ((ViewGroup) this
+                .findViewById(android.R.id.content)).getChildAt(0);
 
         nameInput = (EditText)findViewById(R.id.editText);
         phoneInput = (EditText)findViewById(R.id.editText2);
@@ -98,12 +111,30 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
+        PermissionListener grantedPermissionListener = new BasePermissionListener() {
+            public void onPermissionGranted(PermissionGrantedResponse response) {
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        ContactsContract.Contacts.CONTENT_URI);
+                startActivityForResult(intent, CALLBACK_ADD_CONTACT);
+            }
+        };
+
+        PermissionListener deniedPermissionListener = SnackbarOnDeniedPermissionListener.Builder
+                .with(rootView, getString(R.string.permissions_denied_contact_read))
+                .withOpenSettingsButton(getString(R.string.general_settings))
+                .build();
+
+        PermissionListener compositePermissionListener = new CompositePermissionListener(
+                deniedPermissionListener, grantedPermissionListener);
+
+        final DexterBuilder readContactsPermission = Dexter.withActivity(activity)
+                .withPermission(Manifest.permission.READ_CONTACTS)
+                .withListener(compositePermissionListener);
+
         contactBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        ContactsContract.Contacts.CONTENT_URI);
-                startActivityForResult(intent, CONTACT);
+                        readContactsPermission.check();
             }
         });
 
@@ -113,26 +144,30 @@ public class UserActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
-            case (CONTACT):
+            case (CALLBACK_ADD_CONTACT):
                 if (resultCode == Activity.RESULT_OK) {
                     String contactName = "";
                     String phoneNumber = "";
                     String contactId = null;
 
                     Cursor contactCursor = getContentResolver().query(data.getData(), null,null,null,null);
-                    if(contactCursor != null && contactCursor.moveToFirst()) {
-                        contactName = contactCursor.getString(contactCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                        contactId = contactCursor.getString(contactCursor.getColumnIndex(ContactsContract.Contacts._ID));
+                    if(contactCursor != null) {
+                        if (contactCursor.moveToFirst()) {
+                            contactName = contactCursor.getString(contactCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                            contactId = contactCursor.getString(contactCursor.getColumnIndex(ContactsContract.Contacts._ID));
+                        }
+                        contactCursor.close();
                     }
-                    contactCursor.close();
 
                     if (contactId != null) {
                         Cursor phoneCursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
                                 ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{ contactId }, null);
-                        if (phoneCursor != null && phoneCursor.moveToNext()) {
-                            phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER));
+                        if (phoneCursor != null) {
+                            if(phoneCursor.moveToNext()) {
+                                phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                            }
+                            phoneCursor.close();
                         }
-                        phoneCursor.close();
                     }
                     nameInput.setText(contactName);
                     phoneInput.setText(phoneNumber);

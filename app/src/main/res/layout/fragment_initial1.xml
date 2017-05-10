@@ -26,7 +26,7 @@
     tools:context="me.willeponken.opendoor.IntroActivity">
 
     <TextView
-        android:text="@string/intro_activity_permissions"
+        android:text="@string/intro_activity_set_default_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -35,14 +35,27 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="@android:color/background_light" />
 
-    <TextView
-        android:text="@string/intro_activity_description_permissions"
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/defaultNumber"
+        android:hint="@string/intro_activity_default_number"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textView3"
-        android:textColor="@android:color/background_light"
-        android:textAlignment="center" />
+        android:layout_marginBottom="119dp"
+        android:textColorLink="@android:color/white" />
+
+    <TextView
+        android:text="@string/intro_activity_default_number_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/defaultNumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="133dp"
+        android:id="@+id/textView4"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>

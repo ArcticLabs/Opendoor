@@ -15,15 +15,23 @@
 
 package me.willeponken.opendoor;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.karumi.dexter.listener.multi.SnackbarOnAnyDeniedMultiplePermissionsListener;
 
 import java.util.ArrayList;
 
@@ -42,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final Activity activity = this;
+        ViewGroup rootView = (ViewGroup) ((ViewGroup) this
+                .findViewById(android.R.id.content)).getChildAt(0);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -53,6 +66,20 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(userActivity);
             }
         });
+
+        MultiplePermissionsListener deniedPermissionListener = SnackbarOnAnyDeniedMultiplePermissionsListener.Builder
+                .with(rootView, getString(R.string.permissions_denied_multiple))
+                .withOpenSettingsButton(getString(R.string.general_settings))
+                .withDuration(Snackbar.LENGTH_INDEFINITE)
+                .build();
+
+        Dexter.withActivity(activity)
+                .withPermissions(
+                        Manifest.permission.RECEIVE_SMS,
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.PROCESS_OUTGOING_CALLS)
+                .withListener(deniedPermissionListener).check();
 
         createUserListView();
     }

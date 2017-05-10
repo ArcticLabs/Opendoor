@@ -27,24 +27,15 @@ public class IntroActivity extends AppIntro2 {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        askForPermissions(new String[]{
-                android.Manifest.permission.RECEIVE_SMS,
-                android.Manifest.permission.READ_PHONE_STATE,
-                android.Manifest.permission.CALL_PHONE,
-                android.Manifest.permission.READ_CONTACTS,
-                android.Manifest.permission.PROCESS_OUTGOING_CALLS}, 2);
-        addSlide(SampleSlide.newInstance(R.layout.fragment_initial));
+        addSlide(SampleSlide.newInstance(R.layout.fragment_initial0));
         addSlide(SampleSlide.newInstance(R.layout.fragment_initial1));
-        addSlide(SampleSlide.newInstance(R.layout.fragment_initial2));
 
-        // Hide Skip/Done button.
+        // Hide Skip/Done button
         showSkipButton(false);
         setProgressButtonEnabled(true);
 
-        // Turn vibration on and set intensity.
-        // NOTE: you will probably need to ask VIBRATE permission in Manifest.
+        // Turn off vibration
         setVibrate(false);
-        setVibrateIntensity(30);
     }
 
     @Override
@@ -65,6 +56,5 @@ public class IntroActivity extends AppIntro2 {
     @Override
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         super.onSlideChanged(oldFragment, newFragment);
-        // Do something when the slide changes.
     }
 }
