@@ -23,17 +23,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.daimajia.swipe.adapters.BaseSwipeAdapter;
+
 import java.util.ArrayList;
 
-class UserListAdapter extends BaseAdapter implements ListAdapter{
+class UserListAdapter extends BaseSwipeAdapter{
     private ArrayList<User> userList = new ArrayList<>();
     private Context context;
 
-    UserListAdapter(ArrayList<User> userList, Context context) {
+    public UserListAdapter(ArrayList<User> userList, Context context) {
         this.userList = userList;
         this.context = context;
     }
@@ -50,23 +53,31 @@ class UserListAdapter extends BaseAdapter implements ListAdapter{
 
     @Override
     public long getItemId(int i){
-        return 0;
+        return i;
     }
 
     @Override
-    public View getView(final int i, View view, ViewGroup parent) {
-        final User user = userList.get(i);
+    public int getSwipeLayoutResourceId(int position) {
+        return R.id.swipe;
+    }
 
-        if (view == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.content_user_list, null);
-        }
+    @Override
+    public View generateView(int position, ViewGroup parent) {
+        return LayoutInflater.from(context).inflate(R.layout.content_user_list, null);
+    }
 
-        TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
-        listItemText.setText(user.toString());
+    @Override
+    public void fillValues(final int position, View convertView) {
+        final User user = userList.get(position);
 
-        ImageButton deleteBtn = (ImageButton) view.findViewById(R.id.delete_btn);
-        ImageButton editBtn = (ImageButton) view.findViewById(R.id.edit_btn);
+        TextView listItemName = (TextView) convertView.findViewById(R.id.textName);
+        listItemName.setText(user.name);
+        TextView listItemPass = (TextView) convertView.findViewById(R.id.textPass);
+        listItemPass.setText(user.password);
+        TextView listItemNum = (TextView) convertView.findViewById(R.id.textNumber);
+        listItemNum.setText(user.number);
+
+        ImageButton deleteBtn = (ImageButton) convertView.findViewById(R.id.delete_btn);
 
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -80,7 +91,7 @@ class UserListAdapter extends BaseAdapter implements ListAdapter{
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id) {
                         Database.removeUser(context, user);
-                        userList.remove(i);
+                        userList.remove(position);
                         notifyDataSetChanged();
                     }
                 });
@@ -92,7 +103,7 @@ class UserListAdapter extends BaseAdapter implements ListAdapter{
             }
         });
 
-        editBtn.setOnClickListener(new View.OnClickListener(){
+        listItemName.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent userActivity = new Intent(context, UserActivity.class);
@@ -108,6 +119,6 @@ class UserListAdapter extends BaseAdapter implements ListAdapter{
             }
         });
 
-        return view;
     }
+
 }
