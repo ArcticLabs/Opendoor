@@ -37,7 +37,7 @@
     <string name="shortcut_long_label_user">Lägg till ny gäst</string>
     <string name="shortcut_short_label_settings">Inställningar</string>
     <string name="shortcut_short_label_user">Lägg till gäst</string>
-    <string name="user_activity_error_incorrect_input">Ogiltig inmatning. Vänligen fyll i alla fält.</string>
+    <string name="user_activity_error_incorrect_input">Ogiltig inmatning, vänligen fyll i alla fält.</string>
     <string name="user_activity_password">Lösenord</string>
     <string name="user_activity_phone">Telefon</string>
     <string name="user_activity_select_from_contacts">Välj från kontakter</string>

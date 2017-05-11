@@ -31,20 +31,35 @@
 package me.willeponken.opendoor;
 
 import android.content.res.Resources;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class AboutActivity extends AppCompatActivity {
+
+    private int onClickCount = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         TextView aboutTitle = (TextView)findViewById(R.id.textViewAboutTitle);
         aboutTitle.setText(getString(R.string.general_app_name) + " " + BuildConfig.VERSION_NAME);
+        aboutTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickCount++;
+                if (onClickCount == 5){
+                    onClickCount = 0;
+                    playEpicSaxGuy();
+                }
+            }
+        });
 
         TextView licenseText = (TextView)findViewById(R.id.textViewAboutLicense);
         try {
@@ -57,5 +72,10 @@ public class AboutActivity extends AppCompatActivity {
         } catch (IOException e) {
             licenseText.setText(getString(R.string.about_activity_error_no_license));
         }
+    }
+
+    private void playEpicSaxGuy(){
+        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.shortsaxguy);
+        mediaPlayer.start();
     }
 }

@@ -34,7 +34,7 @@
     <!-- User Activity -->
     <string name="user_activity_title_edit_user">Edit user</string>
     <string name="user_activity_title_new_user">Add new user</string>
-    <string name="user_activity_error_incorrect_input">Incorrect input. Please enter all fields.</string>
+    <string name="user_activity_error_incorrect_input">Incorrect input, please enter all fields.</string>
     <string name="user_activity_name">Name</string>
     <string name="user_activity_phone">Phone</string>
     <string name="user_activity_password">Password</string>
@@ -59,7 +59,7 @@
     <!-- Intro Activity -->
     <string name="intro_activity_welcome">Welcome to Opendoor</string>
     <string name="intro_activity_wel">This intro will help you setup Opendoor</string>
-    <string name="intro_activity_description_permissions">For Opendoor to work, you need to accept the permissions in the next step. The permissions are crucial and the app will not run without them.</string>
+    <string name="intro_activity_description_permissions">For Opendoor to work you need to accept the permissions in the following step. The permissions are crucial and the app will not run without them.</string>
     <string name="intro_activity_permissions">Permissions</string>
     <string name="intro_activity_default_number">Default number</string>
     <string name="intro_activity_set_default_number">Set default number</string>
