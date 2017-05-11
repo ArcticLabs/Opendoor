@@ -23,15 +23,15 @@
     <!-- Bottom View Start-->
     <android.support.constraint.ConstraintLayout
         android:id="@+id/bottom_wrapper"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:background="#d50000"
         android:weightSum="1">
         <!--What you want to show-->
         <ImageButton
             android:id="@+id/delete_btn"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:background="@drawable/delete"
             android:backgroundTint="#fafafa"
             android:contentDescription="@string/user_list_adapter_delete_user"
