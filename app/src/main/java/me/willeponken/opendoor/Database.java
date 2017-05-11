@@ -24,7 +24,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ListIterator;
+
+import static android.R.attr.name;
 
 class Database {
 
@@ -109,9 +113,17 @@ class Database {
             users.add(user);
         }
 
+        // Sort users alphabetically after new user inserted
+        Collections.sort(users, new Comparator<User>(){
+            public int compare(User u1, User u2){
+                return u1.name.compareTo(u2.name);
+            }
+        });
+
         getSettings(context).edit()
                 .putString(SETTINGS_KEY_USERS, new Gson().toJson(users))
                 .apply();
+
     }
 
     static void replaceUser(Context context, User oldUser, User newUser) {
@@ -179,5 +191,9 @@ class Database {
     static int getSleepTime(Context context) {
         return getSettings(context)
                 .getInt(SETTINGS_KEY_SLEEP_TIME, SETTINGS_DEFAULT_SLEEP_TIME);
+    }
+
+    private static void sortUsers(Context context) {
+
     }
 }
