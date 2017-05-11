@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="user_activity_name">Namn</string>
+    <string name="about_activity_source_code">Källkoden finns tillgänglig på: https://github.com/ArcticLabs/Opendoor</string>
+    <string name="about_activity_title">Om</string>
+    <string name="general_no">Nej</string>
+    <string name="general_settings">Inställningar</string>
+    <string name="general_yes">Ja</string>
+    <string name="intro_activity_default_number">Portnummer</string>
+    <string name="intro_activity_default_number_description">Nummer att ringa vid ett mottaget SMS</string>
+    <string name="intro_activity_description_permissions">\"För att Opendoor ska fungera behöver du acceptera behörigheterna i nästa steg. Behörigheterna är väsentliga för att appen ska fungera.</string>
+    <string name="intro_activity_permissions">Behörigheter</string>
+    <string name="intro_activity_set_default_number">Portnummer</string>
+    <string name="intro_activity_wel">Vi hjälper dig ställa in Opendoor på nolltid</string>
+    <string name="intro_activity_welcome">Välkommen till Opendoor</string>
+    <string name="permissions_denied_contact_read">Behörighet att läsa kontakter behövs för att välja från kontakter.</string>
+    <string name="permissions_denied_multiple">Opendoor fungerar inte på grund av otillräckliga behörigheter. Var god ändra detta i systeminställningarna.</string>
+    <string name="settings_activity_title">Inställningar</string>
+    <string name="settings_activity_title_dial_phone_number">Porttelefonnummer</string>
+    <string name="shortcut_disabled">Inaktiverad</string>
+    <string name="shortcut_long_label_settings">Inställningar</string>
+    <string name="shortcut_long_label_user">Lägg till ny gäst</string>
+    <string name="shortcut_short_label_settings">Inställningar</string>
+    <string name="shortcut_short_label_user">Lägg till gäst</string>
+    <string name="user_activity_error_incorrect_input">Ogiltig inmatning. Vänligen fyll i alla fält.</string>
+    <string name="user_activity_password">Lösenord</string>
+    <string name="user_activity_phone">Telefon</string>
+    <string name="user_activity_select_from_contacts">Välj från kontakter</string>
+    <string name="user_activity_title_edit_user">Redigera gäst</string>
+    <string name="user_activity_title_new_user">Lägg till ny gäst</string>
+    <string name="user_list_adapter_delete_question">Vill du verkligen radera</string>
+    <string name="user_list_adapter_delete_user">Radera gäst</string>
+</resources>

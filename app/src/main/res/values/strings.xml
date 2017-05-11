@@ -15,7 +15,7 @@
 
 <resources>
     <!-- General -->
-    <string name="general_app_name">Opendoor</string>
+    <string name="general_app_name" translatable="false">Opendoor</string>
     <string name="general_yes">Yes</string>
     <string name="general_no">No</string>
     <string name="general_settings">Settings</string>
@@ -42,19 +42,19 @@
 
     <!-- User List Adapter -->
     <string name="user_list_adapter_delete_question">Do you want to delete</string>
-    <string name="user_list_adapter_delete_question_mark">\?</string>
+    <string name="user_list_adapter_delete_question_mark" translatable="false">\?</string>
     <string name="user_list_adapter_delete_user">Delete user</string>
 
     <!-- Settings Activity -->
     <string name="settings_activity_title_dial_phone_number">Dial phone number</string>
-    <string name="settings_activity_default_dial_phone_number">+15417543010</string>
+    <string name="settings_activity_default_dial_phone_number" translatable="false">+15417543010</string>
     <string name="settings_activity_title">Settings</string>
 
     <!-- About Activity -->
     <string name="about_activity_title">About</string>
-    <string name="about_activity_caption">Opendoor is open source software licensed under the GNU General Public License v3 (GPL v3).</string>
-    <string name="about_activity_error_no_license">"Unable to load LICENSE.txt resource. Please see https://github.com/willeponken/Opendoor for license."</string>
-    <string name="about_activity_source_code">Source code for Opendoor is available at: \nhttps://github.com/willeponken/Opendoor</string>
+    <string name="about_activity_caption" translatable="false">Opendoor is open source software licensed under the GNU General Public License v3 (GPL v3).</string>
+    <string name="about_activity_error_no_license" translatable="false">"Unable to load LICENSE.txt resource. Please see https://github.com/willeponken/Opendoor for license."</string>
+    <string name="about_activity_source_code">Source code for Opendoor is available at: \nhttps://github.com/ArcticLabs/Opendoor</string>
 
     <!-- Intro Activity -->
     <string name="intro_activity_welcome">Welcome to Opendoor</string>
