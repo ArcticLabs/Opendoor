@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lab_spinner_titles">
+        <item>Laboratorievägen 21</item>
+        <item>Laboratorievägen 23</item>
+        <item>Laboratorievägen 25</item>
+        <item>Laboratorievägen 33</item>
+        <item>@string/intro_activity_custom_number</item>
+    </string-array>
+    <string-array name="lab_spinner_values">
+        <item>0920420044</item>
+        <item>0707218210</item>
+        <item>0707218210</item>
+        <item>0920420062</item>
+    </string-array>
+</resources>

@@ -36,17 +36,18 @@
         android:textColor="@android:color/background_light" />
 
     <EditText
+        android:id="@+id/defaultNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/defaultNumber"
-        android:hint="@string/intro_activity_default_number"
-        android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="119dp"
-        android:textColorLink="@android:color/white" />
+        android:ems="10"
+        android:hint="@string/intro_activity_default_number"
+        android:inputType="phone"
+        android:textColor="@android:color/white"
+        android:textColorLink="@android:color/white"
+        android:visibility="invisible" />
 
     <TextView
         android:text="@string/intro_activity_default_number_description"
@@ -57,5 +58,18 @@
         android:layout_marginBottom="133dp"
         android:id="@+id/textView4"
         android:textColor="@android:color/white" />
+
+    <Spinner
+        android:id="@+id/lab_spinner"
+        android:layout_width="@android:dimen/thumbnail_width"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/defaultNumber"
+        android:layout_alignEnd="@+id/textView4"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_marginBottom="57dp"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:spinnerMode="dialog"
+        style="@style/mySpinnerItemStyle"/>
 
 </RelativeLayout>

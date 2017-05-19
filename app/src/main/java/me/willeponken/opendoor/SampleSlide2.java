@@ -15,26 +15,23 @@
 
 package me.willeponken.opendoor;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
 
-import java.util.ArrayList;
-
-public class SampleSlide extends Fragment implements AdapterView.OnItemSelectedListener{
+public class SampleSlide2 extends Fragment {
 
     private static final String ARG_LAYOUT_RES_ID = "layoutResId"; //NON-NLS
     private int layoutResId;
-    EditText editText;
+    private Spinner choseNumberSpinner;
 
     public static SampleSlide newInstance(int layoutResId) {
         SampleSlide sampleSlide = new SampleSlide();
@@ -48,7 +45,6 @@ public class SampleSlide extends Fragment implements AdapterView.OnItemSelectedL
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        System.out.println("HAAJ HAJJ!");
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null && getArguments().containsKey(ARG_LAYOUT_RES_ID)) {
@@ -61,34 +57,6 @@ public class SampleSlide extends Fragment implements AdapterView.OnItemSelectedL
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(layoutResId, container, false);
-        if (R.layout.fragment_initial1 == layoutResId){
-            editText = (EditText) v.findViewById(R.id.defaultNumber);
-            Spinner spinner = (Spinner) v.findViewById(R.id.lab_spinner);
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                    R.array.lab_spinner_titles, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
-            spinner.setAdapter(adapter);
-            spinner.setOnItemSelectedListener(this);
-        }
-        return  v;
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String[] spinnerTitles = getResources().getStringArray(R.array.lab_spinner_titles);
-        String[] spinnerValues = getResources().getStringArray(R.array.lab_spinner_values);
-
-        if (position < spinnerTitles.length-1 && position >= 0) {
-            editText.setVisibility(View.INVISIBLE);
-            editText.setText(spinnerValues[position]);
-        } else {
-            editText.setText("");
-            editText.setVisibility(View.VISIBLE);
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
+        return v;
     }
 }

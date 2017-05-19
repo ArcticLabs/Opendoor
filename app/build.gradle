@@ -30,8 +30,8 @@ android {
         applicationId "me.willeponken.opendoor"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.1.1-RC1-${getGitHash()}"
+        versionCode 2
+        versionName "1.1.1-RC2-${getGitHash()}"
         buildConfigField "String", "GitHash", "\"${getGitHash()}\""
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true

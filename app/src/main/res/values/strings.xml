@@ -64,5 +64,6 @@
     <string name="intro_activity_default_number">Default number</string>
     <string name="intro_activity_set_default_number">Set default number</string>
     <string name="intro_activity_default_number_description">Enter the number to call on a received SMS.</string>
+    <string name="intro_activity_custom_number">Custom number</string>
 
 </resources>
