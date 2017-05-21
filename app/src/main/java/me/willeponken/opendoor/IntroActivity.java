@@ -18,10 +18,13 @@ package me.willeponken.opendoor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.AppIntro2;
 
@@ -53,13 +56,23 @@ public class IntroActivity extends AppIntro2 {
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
         EditText editText_default = (EditText)findViewById(R.id.defaultNumber);
-        Database.setDialNumber(getApplicationContext(), editText_default.getText().toString());
-        Intent continueToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
-        IntroActivity.this.startActivity(continueToMainActivity);
+        if (setNumber(editText_default)){
+            Database.setDialNumber(getApplicationContext(), editText_default.getText().toString());
+            Intent continueToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+            IntroActivity.this.startActivity(continueToMainActivity);
+        }
     }
 
     @Override
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         super.onSlideChanged(oldFragment, newFragment);
+    }
+
+    private boolean setNumber(EditText editText){
+        if (editText.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Invalid number", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else return true;
     }
 }

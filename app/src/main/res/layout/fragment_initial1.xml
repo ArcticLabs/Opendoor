@@ -70,6 +70,6 @@
         android:paddingBottom="16dp"
         android:paddingTop="16dp"
         android:spinnerMode="dialog"
-        style="@style/mySpinnerItemStyle"/>
+        style="@style/SpinnerAppTheme"/>
 
 </RelativeLayout>
