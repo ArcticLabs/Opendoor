@@ -44,13 +44,13 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="SpinnerAppTheme" parent="android:Widget.Spinner">
-        <!--<item name="android:background">@color/colorAccent</item>-->
+        <item name="android:background">@color/colorPrimary</item>
         <item name="android:dropDownAnchor">@android:color/white</item>
         <item name="android:dropDownSelector">@android:color/white</item>
     </style>
 
     <style name="SpinnerDropDownItemAppTheme" parent="android:Widget.DropDownItem.Spinner">
-        <!--<item name="android:checkMark">@color/colorAccent</item>-->
+        <!--<item name="android:checkMark">@android:color/white</item>-->
     </style>
 
 </resources>

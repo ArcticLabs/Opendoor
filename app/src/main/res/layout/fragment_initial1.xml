@@ -44,19 +44,20 @@
         android:layout_marginBottom="119dp"
         android:ems="10"
         android:hint="@string/intro_activity_default_number"
+        android:textColorHint="@android:color/white"
         android:inputType="phone"
         android:textColor="@android:color/white"
         android:textColorLink="@android:color/white"
         android:visibility="invisible" />
 
     <TextView
-        android:text="@string/intro_activity_default_number_description"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/defaultNumber"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="133dp"
-        android:id="@+id/textView4"
+        android:text="@string/intro_activity_default_number_description"
         android:textColor="@android:color/white" />
 
     <Spinner
@@ -69,7 +70,9 @@
         android:layout_marginBottom="57dp"
         android:paddingBottom="16dp"
         android:paddingTop="16dp"
-        android:spinnerMode="dialog"
-        style="@style/SpinnerAppTheme"/>
+        android:backgroundTint="@android:color/white"
+        android:textAlignment="center"
+        android:spinnerMode="dialog" />
+        <!--style="@style/SpinnerAppTheme"-->
 
 </RelativeLayout>

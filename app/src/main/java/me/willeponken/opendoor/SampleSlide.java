@@ -15,9 +15,7 @@
 
 package me.willeponken.opendoor;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,8 +25,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-
-import java.util.ArrayList;
 
 public class SampleSlide extends Fragment implements AdapterView.OnItemSelectedListener{
 
@@ -48,7 +44,6 @@ public class SampleSlide extends Fragment implements AdapterView.OnItemSelectedL
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        System.out.println("HAAJ HAJJ!");
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null && getArguments().containsKey(ARG_LAYOUT_RES_ID)) {
@@ -65,7 +60,7 @@ public class SampleSlide extends Fragment implements AdapterView.OnItemSelectedL
             editText = (EditText) v.findViewById(R.id.defaultNumber);
             Spinner spinner = (Spinner) v.findViewById(R.id.lab_spinner);
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                    R.array.lab_spinner_titles, android.R.layout.simple_spinner_item);
+                    R.array.lab_spinner_titles, R.layout.custom_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
             spinner.setAdapter(adapter);
             spinner.setOnItemSelectedListener(this);
