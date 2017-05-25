@@ -30,14 +30,17 @@ android {
         applicationId "me.willeponken.opendoor"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 2
-        versionName "1.1.1-RC2-${getGitHash()}"
+        versionCode 3
+        versionName "1.2.0-${getGitHash()}"
         buildConfigField "String", "GitHash", "\"${getGitHash()}\""
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
+            lintOptions{
+                disable 'MissingTranslation'
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
