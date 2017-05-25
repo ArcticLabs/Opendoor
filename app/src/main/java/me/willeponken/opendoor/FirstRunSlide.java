@@ -26,20 +26,20 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class SampleSlide extends Fragment implements AdapterView.OnItemSelectedListener{
+public class FirstRunSlide extends Fragment implements AdapterView.OnItemSelectedListener{
 
     private static final String ARG_LAYOUT_RES_ID = "layoutResId"; //NON-NLS
     private int layoutResId;
     EditText editText;
 
-    public static SampleSlide newInstance(int layoutResId) {
-        SampleSlide sampleSlide = new SampleSlide();
+    public static FirstRunSlide newInstance(int layoutResId) {
+        FirstRunSlide firstRunSlide = new FirstRunSlide();
 
         Bundle args = new Bundle();
         args.putInt(ARG_LAYOUT_RES_ID, layoutResId);
-        sampleSlide.setArguments(args);
+        firstRunSlide.setArguments(args);
 
-        return sampleSlide;
+        return firstRunSlide;
     }
 
     @Override
@@ -84,6 +84,6 @@ public class SampleSlide extends Fragment implements AdapterView.OnItemSelectedL
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
+        // Do nothing
     }
 }

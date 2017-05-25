@@ -30,8 +30,8 @@ public class IntroActivity extends AppIntro2 {
         super.onCreate(savedInstanceState);
 
         // Intro slides
-        addSlide(SampleSlide.newInstance(R.layout.fragment_initial0));
-        addSlide(SampleSlide.newInstance(R.layout.fragment_initial1));
+        addSlide(FirstRunSlide.newInstance(R.layout.fragment_initial0));
+        addSlide(FirstRunSlide.newInstance(R.layout.fragment_initial1));
 
         // Hide Skip/Done button
         showSkipButton(false);
@@ -40,12 +40,6 @@ public class IntroActivity extends AppIntro2 {
         // Turn off vibration
         setVibrate(false);
 
-    }
-
-    @Override
-    public void onSkipPressed(Fragment currentFragment) {
-        super.onSkipPressed(currentFragment);
-        // Do something when users tap on Skip button.
     }
 
     @Override

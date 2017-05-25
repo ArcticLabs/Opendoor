@@ -59,12 +59,9 @@
     <!-- Intro Activity -->
     <string name="intro_activity_welcome">Welcome to Opendoor</string>
     <string name="intro_activity_wel">This intro will help you setup Opendoor</string>
-    <string name="intro_activity_description_permissions">For Opendoor to work you need to accept the permissions in the following step. The permissions are crucial and the app will not run without them.</string>
-    <string name="intro_activity_permissions">Permissions</string>
     <string name="intro_activity_default_number">Default number</string>
     <string name="intro_activity_set_default_number">Set default number</string>
     <string name="intro_activity_default_number_description">Choose you address or enter phone number</string>
     <string name="intro_activity_custom_number">Custom number</string>
-    <string name="intro_activity_choose">Choose address/number</string>
 
 </resources>

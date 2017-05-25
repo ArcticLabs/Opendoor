@@ -28,11 +28,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.ListIterator;
 
-import static android.R.attr.name;
-
 class Database {
-
-    private static final String TAG = Database.class.getSimpleName();
 
     static final String SETTINGS_FILE_KEY = "settings"; //NON-NLS
 
@@ -126,21 +122,6 @@ class Database {
 
     }
 
-    static void replaceUser(Context context, User oldUser, User newUser) {
-        ArrayList<User> users = getUsers(context);
-
-        if (users != null) {
-            ListIterator<User> iterator = getUserPosition(context, oldUser);
-            if (iterator != null) {
-                users.set(iterator.nextIndex()-1, newUser);
-
-                getSettings(context).edit()
-                        .putString(SETTINGS_KEY_USERS, new Gson().toJson(users))
-                        .apply();
-            }
-        }
-    }
-
     static void removeUser(Context context, User user) {
         ArrayList<User> users = getUsers(context);
 
@@ -191,9 +172,5 @@ class Database {
     static int getSleepTime(Context context) {
         return getSettings(context)
                 .getInt(SETTINGS_KEY_SLEEP_TIME, SETTINGS_DEFAULT_SLEEP_TIME);
-    }
-
-    private static void sortUsers(Context context) {
-
     }
 }

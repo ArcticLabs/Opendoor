@@ -43,6 +43,7 @@ import java.io.InputStream;
 public class AboutActivity extends AppCompatActivity {
 
     private int onClickCount = 0;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class AboutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onClickCount++;
-                if (onClickCount == 5){
+                if (onClickCount >= 5){
                     onClickCount = 0;
                     playEpicSaxGuy();
                 }
@@ -67,15 +68,32 @@ public class AboutActivity extends AppCompatActivity {
             InputStream reader = resources.openRawResource(R.raw.license);
 
             byte[] bytes = new byte[reader.available()];
-            reader.read(bytes);
+            if (reader.read(bytes) <= 0) {
+                throw new IOException("Failed to read any data from file");
+            }
             licenseText.setText(new String(bytes));
         } catch (IOException e) {
             licenseText.setText(getString(R.string.about_activity_error_no_license));
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        destroyMediaPlayer();
+        super.onDestroy();
+    }
+
     private void playEpicSaxGuy(){
-        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.shortsaxguy);
+        destroyMediaPlayer();
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.shortsaxguy);
         mediaPlayer.start();
+    }
+
+    private void destroyMediaPlayer() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }

@@ -23,8 +23,6 @@
     <string name="general_yes">Ja</string>
     <string name="intro_activity_default_number">Portnummer</string>
     <string name="intro_activity_default_number_description">Välj din adress eller mata in telefonnummer</string>
-    <string name="intro_activity_description_permissions">\"För att Opendoor ska fungera behöver du acceptera behörigheterna i nästa steg. Behörigheterna är väsentliga för att appen ska fungera.</string>
-    <string name="intro_activity_permissions">Behörigheter</string>
     <string name="intro_activity_set_default_number">Portnummer</string>
     <string name="intro_activity_wel">Vi hjälper dig ställa in Opendoor på nolltid</string>
     <string name="intro_activity_welcome">Välkommen till Opendoor</string>
@@ -46,5 +44,4 @@
     <string name="user_list_adapter_delete_question">Vill du verkligen radera</string>
     <string name="user_list_adapter_delete_user">Radera gäst</string>
     <string name="intro_activity_custom_number">Eget nummer</string>
-    <string name="intro_activity_choose">Välj adress/nummer</string>
 </resources>

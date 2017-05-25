@@ -22,10 +22,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
@@ -36,7 +33,7 @@ class UserListAdapter extends BaseSwipeAdapter{
     private ArrayList<User> userList = new ArrayList<>();
     private Context context;
 
-    public UserListAdapter(ArrayList<User> userList, Context context) {
+    UserListAdapter(ArrayList<User> userList, Context context) {
         this.userList = userList;
         this.context = context;
     }
@@ -63,7 +60,7 @@ class UserListAdapter extends BaseSwipeAdapter{
 
     @Override
     public View generateView(int position, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.content_user_list, null);
+        return LayoutInflater.from(context).inflate(R.layout.content_user_list, parent, false);
     }
 
     @Override
