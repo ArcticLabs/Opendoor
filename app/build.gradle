@@ -30,7 +30,7 @@ android {
         applicationId "me.willeponken.opendoor"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 3
+        versionCode 4
         versionName "1.2.1-${getGitHash()}"
         buildConfigField "String", "GitHash", "\"${getGitHash()}\""
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
