@@ -62,7 +62,8 @@
         android:layout_alignEnd="@+id/editText2"
         android:id="@+id/editText3"
         android:hint="@string/user_activity_password"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:imeOptions="actionDone"/>
 
     <Button
         android:text="@string/user_activity_select_from_contacts"
