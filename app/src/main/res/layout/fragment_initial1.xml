@@ -48,7 +48,8 @@
         android:inputType="phone"
         android:textColor="@android:color/white"
         android:textColorLink="@android:color/white"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:imeOptions="actionDone"/>
 
     <TextView
         android:id="@+id/textView4"

@@ -21,7 +21,10 @@
         android:title="@string/settings_activity_title"
         android:orderInCategory="101"
         app:showAsAction="never" />
+    <item android:id="@+id/action_runWizzard"
+        android:title="@string/runWizzard"
+        android:orderInCategory="102" />
     <item android:id="@+id/action_about"
         android:title="@string/about_activity_title"
-        android:orderInCategory="102" />
+        android:orderInCategory="103" />
 </menu>

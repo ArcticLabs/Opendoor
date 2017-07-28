@@ -64,4 +64,6 @@
     <string name="intro_activity_default_number_description">Choose you address or enter phone number</string>
     <string name="intro_activity_custom_number">Custom number</string>
 
+    <string name="runWizzard">Run setup again</string>
+
 </resources>

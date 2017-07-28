@@ -44,4 +44,5 @@
     <string name="user_list_adapter_delete_question">Vill du verkligen radera</string>
     <string name="user_list_adapter_delete_user">Radera gäst</string>
     <string name="intro_activity_custom_number">Eget nummer</string>
+    <string name="runWizzard">Konfigurera på nytt</string>
 </resources>

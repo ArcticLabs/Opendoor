@@ -105,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_about) {
             Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
             startActivity(intent);
+        } else if (id == R.id.action_runWizzard) {
+            Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
