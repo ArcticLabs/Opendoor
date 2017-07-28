@@ -19,6 +19,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +68,7 @@ class UserListAdapter extends BaseSwipeAdapter{
     public void fillValues(final int position, View convertView) {
         final User user = userList.get(position);
 
+        ConstraintLayout constraintBox = (ConstraintLayout) convertView.findViewById(R.id.constraintBox);
         TextView listItemName = (TextView) convertView.findViewById(R.id.textName);
         listItemName.setText(user.name);
         TextView listItemPass = (TextView) convertView.findViewById(R.id.textPass);
@@ -100,7 +102,7 @@ class UserListAdapter extends BaseSwipeAdapter{
             }
         });
 
-        listItemName.setOnClickListener(new View.OnClickListener(){
+        constraintBox.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent userActivity = new Intent(context, UserActivity.class);
