@@ -48,8 +48,9 @@ public class IntroActivity extends AppIntro2 {
         EditText editText_default = (EditText)findViewById(R.id.defaultNumber);
         if (setNumber(editText_default)){
             Database.setDialNumber(getApplicationContext(), editText_default.getText().toString());
-            Intent continueToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
-            IntroActivity.this.startActivity(continueToMainActivity);
+            finish();
+            //Intent continueToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+            //IntroActivity.this.startActivity(continueToMainActivity);
         }
     }
 

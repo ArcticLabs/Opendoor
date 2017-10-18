@@ -121,4 +121,10 @@ public class MainActivity extends AppCompatActivity {
             userListView.setAdapter(usersAdapter);
         }
     }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        createUserListView();
+    }
 }

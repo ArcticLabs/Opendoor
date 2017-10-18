@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -103,8 +104,9 @@ public class UserActivity extends AppCompatActivity {
 
                     Database.addUser(getApplicationContext(), new User(name, phone, password, true, true));
 
-                    Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(mainActivity);
+                    finish();
+                    //Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                    //startActivity(mainActivity);
 
                 }
 
@@ -173,5 +175,16 @@ public class UserActivity extends AppCompatActivity {
                     phoneInput.setText(phoneNumber);
                 }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //NavUtils.navigateUpFromSameTask(this);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
