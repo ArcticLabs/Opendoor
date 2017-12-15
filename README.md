@@ -8,8 +8,11 @@ Opendoor takes advantage of apartments that are equipped with locks that can be 
 ![Opendoor](opendoor-screenshots.png)
 
 ## Download
-Latest release can be found at:
+~~Latest release can be found at:~~
 https://github.com/willeponken/Opendoor/releases
+
+Latest release available at Play Store:
+https://play.google.com/store/apps/details?id=me.willeponken.opendoor
 
 ## License
 This program is free software: you can redistribute it and/or modify
