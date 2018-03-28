@@ -16,8 +16,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     def getGitHash = { ->
         def stdout = new ByteArrayOutputStream()
         exec {
@@ -29,7 +29,7 @@ android {
     defaultConfig {
         applicationId "me.willeponken.opendoor"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 6
         versionName "1.4-${getGitHash()}"
         buildConfigField "String", "GitHash", "\"${getGitHash()}\""
@@ -54,15 +54,15 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:appcompat-v7:27.1.0'
+    compile 'com.android.support:design:27.1.0'
     compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support:support-vector-drawable:25.3.1'
+    compile 'com.android.support:support-v4:27.1.0'
+    compile 'com.android.support:support-vector-drawable:27.1.0'
     compile 'com.github.paolorotolo:appintro:4.1.0'
     compile 'com.karumi:dexter:4.1.0'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:recyclerview-v7:27.1.0'
+    compile 'com.android.support:support-v4:27.1.0'
     compile "com.daimajia.swipelayout:library:1.2.0@aar"
     testCompile 'junit:junit:4.12'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
