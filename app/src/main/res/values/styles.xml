@@ -26,6 +26,8 @@
         <item name="android:colorForeground">@android:color/background_light</item>
         <item name="android:spinnerStyle">@style/SpinnerAppTheme</item>
         <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItemAppTheme</item>
+        <item name="android:textColorSecondary">@color/text_color_secondary</item>
+        <item name="android:textColorSecondaryInverse">@color/secondary_text_material_dark</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
