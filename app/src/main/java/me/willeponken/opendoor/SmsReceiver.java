@@ -18,13 +18,17 @@ package me.willeponken.opendoor;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.provider.Telephony;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 public class SmsReceiver extends BroadcastReceiver {
     private static final String TAG = SmsReceiver.class.getSimpleName();
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -34,6 +38,10 @@ public class SmsReceiver extends BroadcastReceiver {
                 String number = smsMessage.getOriginatingAddress();
 
                 Log.d(TAG, "SMS received from: " + number + ", with body: " + body); //NON-NLS NON-NLS
+                Bundle params = new Bundle();
+                params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "SMS");
+                params.putString(FirebaseAnalytics.Param.CONTENT, "SMS received from: " + number);
+                mFirebaseAnalytics.logEvent("Known_SMS_Recived", params);
 
                 if (!Database.isGlobalBlock(context) && validUserCredentials(context, number, body)) {
                     DoorPhone.dial(context, Database.getDialNumber(context));

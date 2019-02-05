@@ -18,8 +18,11 @@ package me.willeponken.opendoor;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 class DoorPhone {
     private static final String TAG = DoorPhone.class.getSimpleName();
@@ -28,6 +31,11 @@ class DoorPhone {
         number = PhoneNumberUtils.normalizeNumber(number);
 
         Log.d(TAG, "Dialing phone number: " + number); //NON-NLS
+        Bundle params = new Bundle();
+        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "Call");
+        params.putString(FirebaseAnalytics.Param.CONTENT, "Calling phone number: " + number);
+        FirebaseAnalytics mFirebaseAnalytics = null;
+        mFirebaseAnalytics.logEvent("Door_dialed", params);
 
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // Required for Android below v7
